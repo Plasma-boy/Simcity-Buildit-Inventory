@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIMCITY INVENTORY — Master Production &amp; Trade Chart</title>
+  <title>SIMCITY INVENTORY - Master Production &amp; Trade Chart</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +19,8 @@
     }
 
     button,
-    label {
+    label,
+    input {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -80,12 +81,12 @@
       <!-- Category Filter Pills -->
       <div class="flex flex-wrap items-center gap-1.5" id="filter-bar">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">View:</span>
-        <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-teal-700 text-white shadow-sm transition duration-75">All Sections</button>
-        <button data-filter="factories" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition duration-75">Factories &amp; Raw Materials</button>
-        <button data-filter="upgrades" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition duration-75">Store Upgrades (1★–3★)</button>
-        <button data-filter="year-round" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition duration-75">Year-Round Stores</button>
-        <button data-filter="regional" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition duration-75">Regional Stores</button>
-        <button data-filter="seasonal" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition duration-75">Seasonal Stores</button>
+        <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">All Sections</button>
+        <button data-filter="factories" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Factories &amp; Raw Materials</button>
+        <button data-filter="upgrades" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Store Upgrades (1★–3★)</button>
+        <button data-filter="year-round" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Year-Round Stores</button>
+        <button data-filter="regional" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Regional Stores</button>
+        <button data-filter="seasonal" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Seasonal Stores</button>
       </div>
 
       <!-- Search Input + Ingredient Scope -->
@@ -95,7 +96,7 @@
             id="search-input"
             type="text"
             placeholder="Search item, store, or zone..."
-            class="w-full sm:w-64 pl-8 pr-7 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+            class="w-full sm:w-64 pl-8 pr-7 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
           />
           <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"></circle>
@@ -105,11 +106,11 @@
             id="clear-search-btn"
             type="button"
             aria-label="Clear search"
-            class="hidden absolute right-2 top-1.5 text-slate-400 hover:text-slate-700 text-xs font-extrabold px-1"
+            class="hidden absolute right-2 top-1.5 text-slate-400 hover:text-emerald-700 text-xs font-extrabold px-1"
           >✕</button>
         </div>
 
-        <label id="ingredients-label" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200/80 cursor-pointer select-none transition duration-75">
+        <label id="ingredients-label" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none transition duration-75">
           <input id="toggle-ingredients" type="checkbox" class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
           <span>Include ingredients</span>
         </label>
@@ -119,10 +120,10 @@
     <!-- Star Speed Tier -->
     <div class="pt-2 border-t border-slate-200/80 flex flex-wrap items-center gap-1.5" id="star-bar">
       <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
-      <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 border border-amber-600 shadow-sm transition duration-75">0★ Base</button>
-      <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition duration-75">1★ (-10%)</button>
-      <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition duration-75">2★ (-15%)</button>
-      <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition duration-75">3★ (-20%)</button>
+      <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">0★ Base</button>
+      <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">1★ (-10%)</button>
+      <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">2★ (-15%)</button>
+      <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">3★ (-20%)</button>
     </div>
   </div>
 
@@ -243,9 +244,6 @@
         <div class="p-3 sm:p-4 text-center space-y-1.5 text-xs sm:text-[13px] flex-1 flex flex-col justify-center">
           <p class="font-bold text-slate-900">1× &amp; 5× prices reflect Maximum Trade Depot values. §/min reflects direct shop assembly time at the selected Star Tier.</p>
           <p class="font-bold text-slate-800">Factory materials craft in parallel across slots; Commercial Store items craft sequentially in queue.</p>
-          <p class="font-extrabold text-teal-800 pt-0.5">
-            Drop custom PNG icons into <code class="bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300">images/stores/&lt;id&gt;.png</code> and <code class="bg-slate-100 px-1.5 py-0.5 rounded border border-slate-300">images/items/&lt;slug&gt;.png</code> to render artwork automatically.
-          </p>
         </div>
       </div>
 
@@ -1006,7 +1004,7 @@
     }
 
     // =========================================================================
-    // 4. INITIALIZE & WIRE CONTROLS (INSTANT PRESS + GREEN ACTIVE STATE)
+    // 4. INITIALIZE & WIRE CONTROLS (EMERALD GREEN ACTIVE & PRESS STATES)
     // =========================================================================
     renderAllTables();
 
@@ -1018,23 +1016,29 @@
     const toggleIngredients = document.getElementById("toggle-ingredients");
     const ingredientsLabel = document.getElementById("ingredients-label");
 
-    function syncIngredientsLabelState() {
-      const checked = toggleIngredients.checked;
-      ingredientsLabel.classList.toggle("bg-emerald-600", checked);
-      ingredientsLabel.classList.toggle("text-white", checked);
-      ingredientsLabel.classList.toggle("border-emerald-700", checked);
-      ingredientsLabel.classList.toggle("shadow-sm", checked);
-      ingredientsLabel.classList.toggle("bg-slate-100", !checked);
-      ingredientsLabel.classList.toggle("text-slate-700", !checked);
-      ingredientsLabel.classList.toggle("border-slate-300", !checked);
+    const INACTIVE_PILL_CLASSES = ["bg-emerald-50/70", "text-slate-800", "border-emerald-200", "hover:bg-emerald-100"];
+    const ACTIVE_PILL_CLASSES = ["bg-emerald-600", "text-white", "border-emerald-700", "shadow-sm"];
+
+    function setPillActive(el, isActive, boldWhenActive = true) {
+      el.classList.remove(...INACTIVE_PILL_CLASSES, ...ACTIVE_PILL_CLASSES, "font-bold", "font-semibold");
+      if (isActive) {
+        el.classList.add(...ACTIVE_PILL_CLASSES, boldWhenActive ? "font-bold" : "font-semibold");
+      } else {
+        el.classList.add(...INACTIVE_PILL_CLASSES, "font-semibold");
+      }
     }
 
-    // Instant press feedback on pointerdown so mobile never lingers in grey
+    function syncIngredientsLabelState() {
+      setPillActive(ingredientsLabel, toggleIngredients.checked, true);
+    }
+
+    // Instant emerald press feedback on pointerdown so mobile never lingers in grey
     ingredientsLabel.addEventListener("pointerdown", () => {
-      ingredientsLabel.classList.add("ring-2", "ring-emerald-400", "scale-[0.98]");
+      ingredientsLabel.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
     });
     const clearIngredientsPress = () => {
-      ingredientsLabel.classList.remove("ring-2", "ring-emerald-400", "scale-[0.98]");
+      ingredientsLabel.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
+      syncIngredientsLabelState();
     };
     ingredientsLabel.addEventListener("pointerup", clearIngredientsPress);
     ingredientsLabel.addEventListener("pointercancel", clearIngredientsPress);
@@ -1042,9 +1046,12 @@
 
     filterButtons.forEach(btn => {
       btn.addEventListener("pointerdown", () => {
-        btn.classList.add("scale-[0.97]", "ring-2", "ring-emerald-400");
+        btn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
       });
-      const clearPress = () => btn.classList.remove("scale-[0.97]", "ring-2", "ring-emerald-400");
+      const clearPress = () => {
+        btn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+        setPillActive(btn, btn.getAttribute("data-filter") === state.activeFilter);
+      };
       btn.addEventListener("pointerup", clearPress);
       btn.addEventListener("pointercancel", clearPress);
       btn.addEventListener("pointerleave", clearPress);
@@ -1052,21 +1059,23 @@
       btn.addEventListener("click", () => {
         state.activeFilter = btn.getAttribute("data-filter");
         filterButtons.forEach(b => {
-          b.classList.remove("active", "bg-emerald-600", "bg-teal-700", "text-white", "shadow-sm");
-          b.classList.add("bg-slate-100", "text-slate-700");
+          const isMatch = b.getAttribute("data-filter") === state.activeFilter;
+          b.classList.toggle("active", isMatch);
+          setPillActive(b, isMatch);
         });
-        btn.classList.remove("bg-slate-100", "text-slate-700");
-        btn.classList.add("active", "bg-emerald-600", "text-white", "shadow-sm");
-
+        btn.blur();
         applyFiltersAndSearch();
       });
     });
 
     starButtons.forEach(btn => {
       btn.addEventListener("pointerdown", () => {
-        btn.classList.add("scale-[0.97]", "ring-2", "ring-emerald-400");
+        btn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
       });
-      const clearPress = () => btn.classList.remove("scale-[0.97]", "ring-2", "ring-emerald-400");
+      const clearPress = () => {
+        btn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+        setPillActive(btn, Number(btn.getAttribute("data-star")) === state.activeStar);
+      };
       btn.addEventListener("pointerup", clearPress);
       btn.addEventListener("pointercancel", clearPress);
       btn.addEventListener("pointerleave", clearPress);
@@ -1076,21 +1085,10 @@
         tierBadge.textContent = `Active Speed: ${STAR_TIERS[state.activeStar].label}`;
 
         starButtons.forEach(b => {
-          const isMatch = Number(b.getAttribute("data-star")) === state.activeStar;
-          b.classList.toggle("bg-emerald-600", isMatch);
-          b.classList.toggle("text-white", isMatch);
-          b.classList.toggle("border-emerald-700", isMatch);
-          b.classList.toggle("bg-amber-400", false);
-          b.classList.toggle("text-slate-950", false);
-          b.classList.toggle("border-amber-600", false);
-          b.classList.toggle("font-bold", isMatch);
-          b.classList.toggle("shadow-sm", isMatch);
-          b.classList.toggle("bg-slate-100", !isMatch);
-          b.classList.toggle("text-slate-700", !isMatch);
-          b.classList.toggle("border-slate-300", !isMatch);
-          b.classList.toggle("font-semibold", !isMatch);
+          setPillActive(b, Number(b.getAttribute("data-star")) === state.activeStar);
         });
 
+        btn.blur();
         renderAllStoreGrids();
         applyFiltersAndSearch();
       });
