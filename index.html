@@ -111,7 +111,7 @@
         </button>
       </div>
 
-      <!-- Search Input + Ingredient Scope -->
+      <!-- Search Input + Ingredient Scope + Universal §/min Desc Sort -->
       <div class="flex flex-wrap items-center gap-2">
         <div class="relative flex-1 sm:flex-initial">
           <input
@@ -136,6 +136,16 @@
           <input id="toggle-ingredients" type="checkbox" class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
           <span>Include ingredients</span>
         </label>
+
+        <button
+          id="sort-rate-desc-btn"
+          type="button"
+          aria-pressed="false"
+          class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none transition duration-75 focus:outline-none"
+        >
+          <span>§/min</span>
+          <span aria-hidden="true">↓</span>
+        </button>
       </div>
     </div>
 
@@ -365,7 +375,8 @@
       activeFilter: "all",
       activeStar: 0,
       searchQuery: "",
-      includeIngredients: false
+      includeIngredients: false,
+      sortRateDesc: false
     };
 
     function escapeHtml(str) {
@@ -448,6 +459,21 @@
         return secs > 0 ? `${hrs}h ${mins}m ${secs}s` : (mins > 0 ? `${hrs}h ${mins}m` : `${hrs}h`);
       }
       return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
+    }
+
+    function sortByRateDesc(list, getRate) {
+      if (!state.sortRateDesc) return list;
+      return list
+        .map((item, idx) => ({ item, idx, rate: getRate(item) }))
+        .sort((a, b) => {
+          const aValid = a.rate >= 0;
+          const bValid = b.rate >= 0;
+          if (aValid && !bValid) return -1;
+          if (!aValid && bValid) return 1;
+          if (aValid && bValid && b.rate !== a.rate) return b.rate - a.rate;
+          return a.idx - b.idx;
+        })
+        .map(entry => entry.item);
     }
 
     // =========================================================================
@@ -815,6 +841,8 @@
     // =========================================================================
     function renderFactories() {
       const q = state.searchQuery;
+      const sortedFactory = sortByRateDesc(FACTORY_RAW, m => (m.price > 0 && m.mins > 0) ? (m.price / m.mins) : -1);
+      const sortedRegional = sortByRateDesc(REGIONAL_RAW, m => (m.price > 0 && m.mins > 0) ? (m.price / m.mins) : -1);
 
       const indTable = document.getElementById("table-factory-raw");
       indTable.innerHTML = `
@@ -825,11 +853,11 @@
             <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">TIME</th>
             <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">1× MAX</th>
             <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">5× MAX</th>
-            <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN</th>
+            <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN${state.sortRateDesc ? " ↓" : ""}</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-300">
-          ${FACTORY_RAW.map(m => {
+          ${sortedFactory.map(m => {
             const rate = (m.price / m.mins).toFixed(2);
             return `
               <tr data-search="${escapeHtml(m.name.toLowerCase())}" data-row-matchable class="hover:bg-amber-50/80 transition-colors">
@@ -860,11 +888,11 @@
             <th class="py-1.5 px-2 text-left border-r border-slate-300 whitespace-nowrap">REGION</th>
             <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">TIME</th>
             <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">1× / 5×</th>
-            <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN</th>
+            <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN${state.sortRateDesc ? " ↓" : ""}</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-300">
-          ${REGIONAL_RAW.map(m => {
+          ${sortedRegional.map(m => {
             const rate = (m.price / m.mins).toFixed(2);
             return `
               <tr data-search="${escapeHtml(`${m.name.toLowerCase()} ${m.region.toLowerCase()}`)}" data-row-matchable class="hover:bg-emerald-50/80 transition-colors">
@@ -1000,9 +1028,15 @@
       const q = state.searchQuery;
       const tier = STAR_TIERS[state.activeStar];
 
-      const rowsHtml = store.items.map(it => {
+      const getItemRate = it => {
         const adjMins = it.mins > 0 ? it.mins * (1 - tier.reduction) : 0;
-        const rate = (it.price > 0 && adjMins > 0) ? (it.price / adjMins) : -1;
+        return (it.price > 0 && adjMins > 0) ? (it.price / adjMins) : -1;
+      };
+
+      const orderedItems = sortByRateDesc(store.items, getItemRate);
+
+      const rowsHtml = orderedItems.map(it => {
+        const rate = getItemRate(it);
 
         const searchTokens = state.includeIngredients
           ? `${it.name.toLowerCase()} ${it.mats.toLowerCase()}`
@@ -1058,7 +1092,7 @@
                   <th class="py-1.5 px-1.5 text-center border-r border-slate-300 whitespace-nowrap">TIME (${tier.id}★)</th>
                   <th class="py-1.5 px-1.5 text-right border-r border-slate-300 whitespace-nowrap">1× MAX</th>
                   <th class="py-1.5 px-1.5 text-right border-r border-slate-300 whitespace-nowrap">5× MAX</th>
-                  <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN</th>
+                  <th class="py-1.5 px-2 text-right whitespace-nowrap">§/MIN${state.sortRateDesc ? " ↓" : ""}</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-300">
@@ -1188,6 +1222,7 @@
     const clearSearchBtn = document.getElementById("clear-search-btn");
     const toggleIngredients = document.getElementById("toggle-ingredients");
     const ingredientsLabel = document.getElementById("ingredients-label");
+    const sortRateDescBtn = document.getElementById("sort-rate-desc-btn");
 
     const INACTIVE_PILL_CLASSES = ["bg-emerald-50/70", "text-slate-800", "border-emerald-200", "hover:bg-emerald-100"];
     const ACTIVE_PILL_CLASSES = ["bg-emerald-600", "text-white", "border-emerald-700", "shadow-sm"];
@@ -1234,6 +1269,29 @@
     ingredientsLabel.addEventListener("pointerup", clearIngredientsPress);
     ingredientsLabel.addEventListener("pointercancel", clearIngredientsPress);
     ingredientsLabel.addEventListener("pointerleave", clearIngredientsPress);
+
+    function syncSortRateBtnState() {
+      sortRateDescBtn.setAttribute("aria-pressed", String(state.sortRateDesc));
+      setPillActive(sortRateDescBtn, state.sortRateDesc, true);
+    }
+
+    sortRateDescBtn.addEventListener("pointerdown", () => {
+      sortRateDescBtn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+    });
+    const clearSortPress = () => {
+      sortRateDescBtn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+      syncSortRateBtnState();
+    };
+    sortRateDescBtn.addEventListener("pointerup", clearSortPress);
+    sortRateDescBtn.addEventListener("pointercancel", clearSortPress);
+    sortRateDescBtn.addEventListener("pointerleave", clearSortPress);
+
+    sortRateDescBtn.addEventListener("click", () => {
+      state.sortRateDesc = !state.sortRateDesc;
+      syncSortRateBtnState();
+      sortRateDescBtn.blur();
+      renderAllTables();
+    });
 
     starButtons.forEach(btn => {
       btn.addEventListener("pointerdown", () => {
@@ -1282,6 +1340,7 @@
     });
 
     syncIngredientsLabelState();
+    syncSortRateBtnState();
     syncSectionSelectUI();
   </script>
 </body>
