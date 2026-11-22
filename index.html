@@ -84,9 +84,11 @@
         <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">All Sections</button>
         <button data-filter="factories" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Factories &amp; Raw Materials</button>
         <button data-filter="upgrades" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Store Upgrades (1★–3★)</button>
+        <button data-filter="slots" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Slot Costs (3–11)</button>
         <button data-filter="year-round" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Year-Round Stores</button>
         <button data-filter="regional" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Regional Stores</button>
         <button data-filter="seasonal" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Seasonal Stores</button>
+        <button data-filter="vu-generator" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Vu's Random Generator</button>
       </div>
 
       <!-- Search Input + Ingredient Scope -->
@@ -204,6 +206,19 @@
     </section>
 
     <!-- =========================================================
+         SECTION 2B: SLOT-OPENING & CUMULATIVE SIMCASH COSTS
+    ========================================================= -->
+    <section data-category="slots" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+      <div class="bg-[#a5f3fc] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-center gap-2 text-center">
+        <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SLOT-OPENING &amp; CUMULATIVE SIMCASH COSTS (SLOTS 3–11)</h2>
+        <span class="text-[11px] font-bold text-cyan-950">(Per-Slot Cost &amp; Cumulative Total)</span>
+      </div>
+      <div class="table-wrap overflow-x-auto">
+        <table id="table-slot-costs" class="w-full border-collapse text-xs"></table>
+      </div>
+    </section>
+
+    <!-- =========================================================
          SECTION 3: YEAR-ROUND COMMERCIAL STORES (14 Stores)
     ========================================================= -->
     <section data-category="year-round" class="space-y-2.5">
@@ -231,6 +246,40 @@
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SEASONAL COMMERCIAL STORES (2 SHOPS)</h2>
       </div>
       <div id="grid-seasonal" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5"></div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5B: VU'S RANDOM GENERATOR (Dedicated Section)
+    ========================================================= -->
+    <section data-category="vu-generator" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+      <div class="bg-[#fca5a5] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-between gap-2">
+        <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">VU'S RANDOM GENERATOR</h2>
+        <div class="flex items-center gap-1.5 text-[11px] font-extrabold">
+          <span class="bg-white/90 border border-slate-900 px-2 py-0.5 rounded-md whitespace-nowrap">Up to 11 Slots</span>
+          <span class="bg-slate-900 text-amber-300 px-2 py-0.5 rounded-md whitespace-nowrap">2,880 Max Slot SimCash</span>
+        </div>
+      </div>
+
+      <div class="p-3 sm:p-4 space-y-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+          <div class="bg-rose-50/70 border border-rose-200 rounded-xl p-2.5">
+            <div class="font-black uppercase text-slate-900 text-[11px]">How It Works</div>
+            <p class="font-semibold text-slate-700 mt-1">Adopts the production catalog and speed tier of a randomly selected commercial building—allowing access to items/slots without building every separate shop first.</p>
+          </div>
+          <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-2.5">
+            <div class="font-black uppercase text-slate-900 text-[11px]">Slot Unlock Pricing</div>
+            <p class="font-semibold text-slate-700 mt-1">Starts at <span class="font-extrabold text-slate-900">80 SimCash</span> for Slot 3 and increases by <span class="font-extrabold text-slate-900">+60 SimCash</span> per slot up to <span class="font-extrabold text-slate-900">560 SimCash</span> at Slot 11.</p>
+          </div>
+          <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-2.5">
+            <div class="font-black uppercase text-slate-900 text-[11px]">Cumulative Investment</div>
+            <p class="font-semibold text-slate-700 mt-1">Unlocking Slots 3–5 costs <span class="font-extrabold text-slate-900">420 SimCash</span>; Slots 3–8 costs <span class="font-extrabold text-slate-900">1,380 SimCash</span>; full unlock through Slot 11 totals <span class="font-extrabold text-emerald-800">2,880 SimCash</span>.</p>
+          </div>
+        </div>
+
+        <div class="table-wrap overflow-x-auto border border-slate-300 rounded-xl">
+          <table id="table-vu-slots" class="w-full border-collapse text-xs"></table>
+        </div>
+      </div>
     </section>
 
     <!-- =========================================================
@@ -270,6 +319,26 @@
       { id: 1, label: "1★ (-10%)", reduction: 0.10 },
       { id: 2, label: "2★ (-15%)", reduction: 0.15 },
       { id: 3, label: "3★ (-20%)", reduction: 0.20 }
+    ];
+
+    const SLOT_NUMBERS = [3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+    const SLOT_COSTS = [
+      {
+        name: "Building Supplies & Hardware Stores",
+        costs: [4, 10, 16, 22, 28, 34, 40, 46, 52],
+        totals: [4, 14, 30, 52, 80, 114, 154, 200, 252]
+      },
+      {
+        name: "Most Commercial Buildings",
+        costs: [8, 14, 20, 26, 32, 38, 44, 50, 56],
+        totals: [8, 22, 42, 68, 100, 138, 182, 232, 288]
+      },
+      {
+        name: "Vu's Random Generator",
+        costs: [80, 140, 200, 260, 320, 380, 440, 500, 560],
+        totals: [80, 220, 420, 680, 1000, 1380, 1820, 2320, 2880]
+      }
     ];
 
     const state = {
@@ -842,6 +911,71 @@
       `;
     }
 
+    function renderSlotCosts() {
+      const q = state.searchQuery;
+      const table = document.getElementById("table-slot-costs");
+      table.innerHTML = `
+        <thead>
+          <tr class="bg-slate-100 border-b-2 border-slate-900 text-[11px] font-extrabold uppercase text-slate-900">
+            <th class="py-1.5 px-3 text-left border-r border-slate-400 whitespace-nowrap">BUILDING GROUP</th>
+            <th class="py-1.5 px-2 text-left border-r border-slate-300 whitespace-nowrap">TYPE</th>
+            ${SLOT_NUMBERS.map((s, idx) => `
+              <th class="py-1.5 px-2 text-right ${idx < SLOT_NUMBERS.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">SLOT ${s}</th>
+            `).join("")}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-300">
+          ${SLOT_COSTS.map(row => `
+            <tr data-search="${escapeHtml(row.name.toLowerCase())}" data-row-matchable class="hover:bg-cyan-50/70 transition-colors">
+              <td rowspan="2" class="py-2 px-3 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap bg-white">${highlightMatch(row.name, q)}</td>
+              <td class="py-1.5 px-2 font-bold text-slate-800 border-r border-slate-300 whitespace-nowrap bg-slate-50/80">SimCash Cost</td>
+              ${row.costs.map((c, idx) => `
+                <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 ${idx < row.costs.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">${c.toLocaleString()}</td>
+              `).join("")}
+            </tr>
+            <tr data-search="${escapeHtml(row.name.toLowerCase())}" data-row-matchable class="hover:bg-emerald-50/60 transition-colors bg-emerald-50/30">
+              <td class="py-1.5 px-2 font-bold text-emerald-900 border-r border-slate-300 whitespace-nowrap">Total SimCash</td>
+              ${row.totals.map((t, idx) => `
+                <td class="num py-1.5 px-2 text-right font-black text-emerald-800 ${idx < row.totals.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">${t.toLocaleString()}</td>
+              `).join("")}
+            </tr>
+          `).join("")}
+        </tbody>
+      `;
+    }
+
+    function renderVuGeneratorSection() {
+      const q = state.searchQuery;
+      const vuData = SLOT_COSTS.find(r => r.name === "Vu's Random Generator");
+      const table = document.getElementById("table-vu-slots");
+      if (!vuData || !table) return;
+
+      table.innerHTML = `
+        <thead>
+          <tr class="bg-slate-100 border-b-2 border-slate-900 text-[11px] font-extrabold uppercase text-slate-900">
+            <th class="py-1.5 px-3 text-left border-r border-slate-400 whitespace-nowrap">VU RANDOM GENERATOR</th>
+            ${SLOT_NUMBERS.map((s, idx) => `
+              <th class="py-1.5 px-2 text-right ${idx < SLOT_NUMBERS.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">SLOT ${s}</th>
+            `).join("")}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-300">
+          <tr data-search="vu random generator slot simcash" data-row-matchable class="hover:bg-rose-50/70 transition-colors">
+            <td class="py-1.5 px-3 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">${highlightMatch("SimCash Cost", q)}</td>
+            ${vuData.costs.map((c, idx) => `
+              <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 ${idx < vuData.costs.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">${c.toLocaleString()}</td>
+            `).join("")}
+          </tr>
+          <tr data-search="vu random generator total cumulative simcash" data-row-matchable class="hover:bg-emerald-50/60 transition-colors bg-emerald-50/40">
+            <td class="py-1.5 px-3 font-black text-emerald-900 border-r border-slate-400 whitespace-nowrap">${highlightMatch("Total SimCash", q)}</td>
+            ${vuData.totals.map((t, idx) => `
+              <td class="num py-1.5 px-2 text-right font-black text-emerald-800 ${idx < vuData.totals.length - 1 ? "border-r border-slate-300" : ""} whitespace-nowrap">${t.toLocaleString()}</td>
+            `).join("")}
+          </tr>
+        </tbody>
+      `;
+    }
+
     function renderStoreCardTable(store) {
       const q = state.searchQuery;
       const tier = STAR_TIERS[state.activeStar];
@@ -928,7 +1062,9 @@
     function renderAllTables() {
       renderFactories();
       renderStoreUpgrades();
+      renderSlotCosts();
       renderAllStoreGrids();
+      renderVuGeneratorSection();
       applyFiltersAndSearch();
     }
 
@@ -991,6 +1127,8 @@
           block.classList.toggle("hidden", !hasSectionMatch);
           if (hasSectionMatch) totalMatchedSections += 1;
         } else {
+          const sectionHeadingText = (block.querySelector("h2")?.textContent || "").toLowerCase();
+          const sectionMatches = sectionHeadingText.includes(q);
           const rows = block.querySelectorAll("[data-row-matchable]");
           let matchedRowsInBlock = 0;
 
@@ -998,12 +1136,12 @@
             const tokens = row.getAttribute("data-search") || "";
             if (tokens.includes(q)) {
               matchedRowsInBlock += 1;
-            } else {
+            } else if (!sectionMatches) {
               row.classList.add("hidden");
             }
           });
 
-          const hasBlockMatch = matchedRowsInBlock > 0;
+          const hasBlockMatch = sectionMatches || matchedRowsInBlock > 0;
           block.classList.toggle("hidden", !hasBlockMatch);
           if (hasBlockMatch) totalMatchedSections += 1;
         }
