@@ -21,6 +21,19 @@
       font-variant-numeric: tabular-nums;
     }
 
+    table th,
+    table td {
+      vertical-align: middle;
+    }
+
+    .search-mark {
+      background-color: #fde047;
+      color: #0f172a;
+      padding: 0 2px;
+      border-radius: 3px;
+      box-shadow: inset 0 0 0 1px #ca8a04;
+    }
+
     .table-wrap::-webkit-scrollbar {
       height: 6px;
     }
@@ -97,20 +110,13 @@
       </div>
     </div>
 
-    <!-- Star Speed Tier + Profit Rate Sort -->
-    <div class="pt-2 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-2">
-      <div class="flex flex-wrap items-center gap-1.5" id="star-bar">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
-        <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 border border-amber-600 shadow-sm transition">0★ Base</button>
-        <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">1★ (-10%)</button>
-        <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">2★ (-15%)</button>
-        <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">3★ (-20%)</button>
-      </div>
-
-      <label id="toggle-sort-label" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-800 border border-slate-300 hover:bg-slate-200/70 cursor-pointer select-none transition">
-        <input id="toggle-sort" type="checkbox" class="w-3.5 h-3.5 rounded accent-teal-700 cursor-pointer" />
-        <span>Sort Items by §/min (Best → Worst)</span>
-      </label>
+    <!-- Star Speed Tier -->
+    <div class="pt-2 border-t border-slate-200/80 flex flex-wrap items-center gap-1.5" id="star-bar">
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
+      <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-400 text-slate-950 border border-amber-600 shadow-sm transition">0★ Base</button>
+      <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">1★ (-10%)</button>
+      <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">2★ (-15%)</button>
+      <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-300 hover:bg-slate-200 transition">3★ (-20%)</button>
     </div>
   </div>
 
@@ -156,23 +162,23 @@
     <div data-category="factories" class="grid grid-cols-1 xl:grid-cols-12 gap-3.5">
       <!-- Industrial Raw Materials (11) -->
       <section class="section-block xl:col-span-7 bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm flex flex-col">
-        <div class="bg-[#fde68a] border-b-2 border-slate-900 px-3 py-1.5 flex items-center justify-center gap-2">
+        <div class="bg-[#fde68a] border-b-2 border-slate-900 px-3 py-2 flex items-center justify-center gap-2">
           <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">INDUSTRIAL FACTORY MATERIALS</h2>
           <span class="text-[11px] font-bold bg-amber-900 text-white px-2 py-0.5 rounded-full">Parallel Slots</span>
         </div>
         <div class="table-wrap overflow-x-auto flex-1">
-          <table id="table-factory-raw" class="w-full border-collapse text-xs h-full"></table>
+          <table id="table-factory-raw" class="w-full border-collapse text-xs"></table>
         </div>
       </section>
 
       <!-- Regional Raw Materials (5) -->
       <section class="section-block xl:col-span-5 bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm flex flex-col">
-        <div class="bg-[#86efac] border-b-2 border-slate-900 px-3 py-1.5 flex items-center justify-center gap-2">
+        <div class="bg-[#86efac] border-b-2 border-slate-900 px-3 py-2 flex items-center justify-center gap-2">
           <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">REGIONAL FACTORY MATERIALS</h2>
           <span class="text-[11px] font-bold bg-emerald-900 text-white px-2 py-0.5 rounded-full">Lv.25 • 5 Slots</span>
         </div>
         <div class="table-wrap overflow-x-auto flex-1">
-          <table id="table-regional-raw" class="w-full border-collapse text-xs h-full"></table>
+          <table id="table-regional-raw" class="w-full border-collapse text-xs"></table>
         </div>
       </section>
     </div>
@@ -181,7 +187,7 @@
          SECTION 2: COMMERCIAL STORE STAR UPGRADE COSTS
     ========================================================= -->
     <section data-category="upgrades" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
-      <div class="bg-[#cbd5e1] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-center gap-2">
+      <div class="bg-[#cbd5e1] border-b-2 border-slate-900 px-3 py-2 flex flex-wrap items-center justify-center gap-2">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">COMMERCIAL STORE UPGRADE COSTS &amp; SPEED TIERS</h2>
         <span class="text-[11px] font-bold text-slate-700">(1★ = -10% • 2★ = -15% • 3★ = -20%)</span>
       </div>
@@ -194,30 +200,30 @@
          SECTION 3: YEAR-ROUND COMMERCIAL STORES (14 Stores)
     ========================================================= -->
     <section data-category="year-round" class="space-y-2.5">
-      <div class="bg-[#93c5fd] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
+      <div class="bg-[#93c5fd] border-2 border-slate-900 rounded-xl px-3 py-2 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">YEAR-ROUND COMMERCIAL STORES (14 SHOPS)</h2>
       </div>
-      <div id="grid-year-round" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5"></div>
+      <div id="grid-year-round" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5 items-start"></div>
     </section>
 
     <!-- =========================================================
          SECTION 4: REGIONAL COMMERCIAL STORES (5 Stores)
     ========================================================= -->
     <section data-category="regional" class="space-y-2.5">
-      <div class="bg-[#fdba74] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
+      <div class="bg-[#fdba74] border-2 border-slate-900 rounded-xl px-3 py-2 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">REGIONAL COMMERCIAL STORES (5 SHOPS)</h2>
       </div>
-      <div id="grid-regional" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5"></div>
+      <div id="grid-regional" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5 items-start"></div>
     </section>
 
     <!-- =========================================================
          SECTION 5: SEASONAL COMMERCIAL STORES (2 Stores)
     ========================================================= -->
     <section data-category="seasonal" class="space-y-2.5">
-      <div class="bg-[#d8b4fe] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
+      <div class="bg-[#d8b4fe] border-2 border-slate-900 rounded-xl px-3 py-2 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SEASONAL COMMERCIAL STORES (2 SHOPS)</h2>
       </div>
-      <div id="grid-seasonal" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5"></div>
+      <div id="grid-seasonal" class="grid grid-cols-1 xl:grid-cols-2 gap-3.5 items-start"></div>
     </section>
 
     <!-- =========================================================
@@ -225,7 +231,7 @@
     ========================================================= -->
     <footer class="section-block grid grid-cols-1 lg:grid-cols-12 border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm bg-white">
       <div class="lg:col-span-8 flex flex-col">
-        <div class="bg-slate-300 border-b-2 border-slate-900 px-3 py-1 text-center">
+        <div class="bg-slate-300 border-b-2 border-slate-900 px-3 py-1.5 text-center">
           <h2 class="text-xs sm:text-sm font-black tracking-wider uppercase text-slate-900">*PRODUCTION &amp; TRADE NOTES*</h2>
         </div>
         <div class="p-3 sm:p-4 text-center space-y-1.5 text-xs sm:text-[13px] flex-1 flex flex-col justify-center">
@@ -265,10 +271,28 @@
     const state = {
       activeFilter: "all",
       activeStar: 0,
-      sortByRate: false,
       searchQuery: "",
       includeIngredients: false
     };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function escapeRegExp(str) {
+      return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function highlightMatch(text, query) {
+      const safe = escapeHtml(text);
+      if (!query) return safe;
+      const re = new RegExp(`(${escapeRegExp(query)})`, "gi");
+      return safe.replace(re, '<mark class="search-mark">$1</mark>');
+    }
 
     function slugifyName(text) {
       return text
@@ -302,9 +326,9 @@
       const initials = getInitials(store.name);
       return `
         <span class="w-8 h-7 rounded-lg bg-white/90 border border-slate-900 flex items-center justify-center overflow-hidden shrink-0">
-          <img src="${src}" alt="${store.name}" loading="lazy" class="w-full h-full object-contain p-0.5"
+          <img src="${src}" alt="${escapeHtml(store.name)}" loading="lazy" class="w-full h-full object-contain p-0.5"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <span class="w-full h-full items-center justify-center text-[10px] font-black text-slate-900 bg-slate-100" style="display:none;">${initials}</span>
+          <span class="w-full h-full items-center justify-center text-[10px] font-black text-slate-900 bg-slate-100 leading-none" style="display:none;">${initials}</span>
         </span>
       `;
     }
@@ -314,9 +338,9 @@
       const initials = getInitials(itemName);
       return `
         <span class="w-7 h-7 rounded-md bg-slate-100 border border-slate-400 flex items-center justify-center overflow-hidden shrink-0">
-          <img src="${src}" alt="${itemName}" loading="lazy" class="w-full h-full object-contain p-0.5"
+          <img src="${src}" alt="${escapeHtml(itemName)}" loading="lazy" class="w-full h-full object-contain p-0.5"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <span class="w-full h-full items-center justify-center text-[9px] font-black text-slate-700" style="display:none;">${initials}</span>
+          <span class="w-full h-full items-center justify-center text-[9px] font-black text-slate-700 leading-none" style="display:none;">${initials}</span>
         </span>
       `;
     }
@@ -692,6 +716,8 @@
     // 3. TABLE RENDERERS
     // =========================================================================
     function renderFactories() {
+      const q = state.searchQuery;
+
       const indTable = document.getElementById("table-factory-raw");
       indTable.innerHTML = `
         <thead>
@@ -708,18 +734,20 @@
           ${FACTORY_RAW.map(m => {
             const rate = (m.price / m.mins).toFixed(2);
             return `
-              <tr data-search="${m.name.toLowerCase()}" data-row-matchable class="hover:bg-amber-50/80 transition-colors">
-                <td class="py-1 px-2.5 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">
-                  <div class="flex items-center gap-2">
+              <tr data-search="${escapeHtml(m.name.toLowerCase())}" data-row-matchable class="hover:bg-amber-50/80 transition-colors">
+                <td class="py-1.5 px-2.5 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">
+                  <div class="inline-flex items-center gap-2">
                     ${renderItemThumb(m.name)}
-                    <span>${m.name}</span>
+                    <span>${highlightMatch(m.name, q)}</span>
                   </div>
                 </td>
-                <td class="num py-1 px-2 text-center font-bold text-slate-700 border-r border-slate-300">${m.lv}</td>
-                <td class="num py-1 px-2 text-center font-bold text-slate-800 border-r border-slate-300 whitespace-nowrap">${formatDuration(m.mins, 0)}</td>
-                <td class="num py-1 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">${m.price} ${simoleonCoinSVG()}</td>
-                <td class="num py-1 px-2 text-right font-bold text-slate-700 border-r border-slate-300 whitespace-nowrap">${(m.price * 5).toLocaleString()}</td>
-                <td class="num py-1 px-2 text-right font-black text-emerald-700 bg-emerald-50/50">${rate}</td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-700 border-r border-slate-300">${m.lv}</td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-800 border-r border-slate-300 whitespace-nowrap">${formatDuration(m.mins, 0)}</td>
+                <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
+                  <span class="inline-flex items-center justify-end gap-1">${m.price} ${simoleonCoinSVG()}</span>
+                </td>
+                <td class="num py-1.5 px-2 text-right font-bold text-slate-700 border-r border-slate-300 whitespace-nowrap">${(m.price * 5).toLocaleString()}</td>
+                <td class="num py-1.5 px-2 text-right font-black text-emerald-700 bg-emerald-50/50">${rate}</td>
               </tr>
             `;
           }).join("")}
@@ -741,17 +769,19 @@
           ${REGIONAL_RAW.map(m => {
             const rate = (m.price / m.mins).toFixed(2);
             return `
-              <tr data-search="${m.name.toLowerCase()} ${m.region.toLowerCase()}" data-row-matchable class="hover:bg-emerald-50/80 transition-colors">
-                <td class="py-1 px-2.5 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">
-                  <div class="flex items-center gap-2">
+              <tr data-search="${escapeHtml(`${m.name.toLowerCase()} ${m.region.toLowerCase()}`)}" data-row-matchable class="hover:bg-emerald-50/80 transition-colors">
+                <td class="py-1.5 px-2.5 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">
+                  <div class="inline-flex items-center gap-2">
                     ${renderItemThumb(m.name)}
-                    <span>${m.name}</span>
+                    <span>${highlightMatch(m.name, q)}</span>
                   </div>
                 </td>
-                <td class="py-1 px-2 font-bold text-slate-700 border-r border-slate-300 whitespace-nowrap">${m.region}</td>
-                <td class="num py-1 px-2 text-center font-bold text-slate-800 border-r border-slate-300">${m.mins}m</td>
-                <td class="num py-1 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">${m.price} / ${m.price * 5} ${simoleonCoinSVG()}</td>
-                <td class="num py-1 px-2 text-right font-black text-emerald-700 bg-emerald-50/50">${rate}</td>
+                <td class="py-1.5 px-2 font-bold text-slate-700 border-r border-slate-300 whitespace-nowrap">${highlightMatch(m.region, q)}</td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-800 border-r border-slate-300">${m.mins}m</td>
+                <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
+                  <span class="inline-flex items-center justify-end gap-1">${m.price} / ${m.price * 5} ${simoleonCoinSVG()}</span>
+                </td>
+                <td class="num py-1.5 px-2 text-right font-black text-emerald-700 bg-emerald-50/50">${rate}</td>
               </tr>
             `;
           }).join("")}
@@ -760,6 +790,7 @@
     }
 
     function renderStoreUpgrades() {
+      const q = state.searchQuery;
       const table = document.getElementById("table-store-upgrades");
       table.innerHTML = `
         <thead>
@@ -775,14 +806,18 @@
         </thead>
         <tbody class="divide-y divide-slate-300">
           ${STORE_UPGRADES.map(u => `
-            <tr data-search="${u.name.toLowerCase()}" data-row-matchable class="hover:bg-sky-50/80 transition-colors">
-              <td class="py-1 px-3 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">${u.name}</td>
-              <td class="num py-1 px-2 text-center font-bold text-slate-700 border-r border-slate-300">Lv.${u.unlockLv}</td>
-              <td class="num py-1 px-2 text-right font-bold text-slate-800 border-r border-slate-400 whitespace-nowrap">${u.build} ${simoleonCoinSVG()}</td>
-              <td class="num py-1 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s1}</td>
-              <td class="num py-1 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s2}</td>
-              <td class="num py-1 px-2 text-right font-bold text-slate-900 border-r border-slate-400 whitespace-nowrap">${u.s3}</td>
-              <td class="num py-1 px-3 text-right font-black text-teal-800 bg-slate-50 whitespace-nowrap">${u.total} ${simoleonCoinSVG()}</td>
+            <tr data-search="${escapeHtml(u.name.toLowerCase())}" data-row-matchable class="hover:bg-sky-50/80 transition-colors">
+              <td class="py-1.5 px-3 font-extrabold text-slate-900 border-r border-slate-400 whitespace-nowrap">${highlightMatch(u.name, q)}</td>
+              <td class="num py-1.5 px-2 text-center font-bold text-slate-700 border-r border-slate-300">Lv.${u.unlockLv}</td>
+              <td class="num py-1.5 px-2 text-right font-bold text-slate-800 border-r border-slate-400 whitespace-nowrap">
+                <span class="inline-flex items-center justify-end gap-1">${u.build} ${simoleonCoinSVG()}</span>
+              </td>
+              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s1}</td>
+              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s2}</td>
+              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-400 whitespace-nowrap">${u.s3}</td>
+              <td class="num py-1.5 px-3 text-right font-black text-teal-800 bg-slate-50 whitespace-nowrap">
+                <span class="inline-flex items-center justify-end gap-1">${u.total} ${simoleonCoinSVG()}</span>
+              </td>
             </tr>
           `).join("")}
         </tbody>
@@ -790,18 +825,13 @@
     }
 
     function renderStoreCardTable(store) {
+      const q = state.searchQuery;
       const tier = STAR_TIERS[state.activeStar];
-      const enriched = store.items.map(it => {
+
+      const rowsHtml = store.items.map(it => {
         const adjMins = it.mins > 0 ? it.mins * (1 - tier.reduction) : 0;
         const rate = (it.price > 0 && adjMins > 0) ? (it.price / adjMins) : -1;
-        return { ...it, adjMins, rate };
-      });
 
-      const items = state.sortByRate
-        ? [...enriched].sort((a, b) => b.rate - a.rate)
-        : enriched;
-
-      const rowsHtml = items.map(it => {
         const searchTokens = state.includeIngredients
           ? `${it.name.toLowerCase()} ${it.mats.toLowerCase()}`
           : `${it.name.toLowerCase()}`;
@@ -809,51 +839,54 @@
         const timeDisplay = it.mins > 0 ? formatDuration(it.mins, tier.reduction) : "—";
         const priceDisplay = it.price > 0 ? `${it.price.toLocaleString()}` : "—";
         const fiveXDisplay = it.price > 0 ? `${(it.price * 5).toLocaleString()}` : "—";
-        const rateDisplay = it.rate >= 0 ? it.rate.toFixed(2) : "—";
+        const rateDisplay = rate >= 0 ? rate.toFixed(2) : "—";
+
+        const highlightedName = highlightMatch(it.name, q);
+        const highlightedMats = state.includeIngredients ? highlightMatch(it.mats, q) : escapeHtml(it.mats);
 
         return `
-          <tr data-search="${searchTokens}" data-row-matchable class="hover:bg-yellow-100/60 transition-colors">
-            <td class="py-1 px-2 font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
-              <div class="flex items-center gap-1.5">
+          <tr data-search="${escapeHtml(searchTokens)}" data-row-matchable class="hover:bg-yellow-100/60 transition-colors">
+            <td class="py-1.5 px-2 font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
+              <div class="inline-flex items-center gap-1.5">
                 ${renderItemThumb(it.name)}
-                <span>${it.name}</span>
+                <span>${highlightedName}</span>
               </div>
             </td>
-            <td class="num py-1 px-1.5 text-center font-bold text-slate-700 border-r border-slate-300">${it.lv}</td>
-            <td class="py-1 px-2 text-[11px] font-semibold text-slate-700 border-r border-slate-300">${it.mats}</td>
-            <td class="num py-1 px-1.5 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${timeDisplay}</td>
-            <td class="num py-1 px-1.5 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
-              ${it.price > 0 ? `${priceDisplay} ${simoleonCoinSVG()}` : "—"}
+            <td class="num py-1.5 px-1.5 text-center font-bold text-slate-700 border-r border-slate-300">${it.lv}</td>
+            <td class="py-1.5 px-2 text-[11px] font-semibold text-slate-700 border-r border-slate-300 leading-snug">${highlightedMats}</td>
+            <td class="num py-1.5 px-1.5 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${timeDisplay}</td>
+            <td class="num py-1.5 px-1.5 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
+              ${it.price > 0 ? `<span class="inline-flex items-center justify-end gap-1">${priceDisplay} ${simoleonCoinSVG()}</span>` : "—"}
             </td>
-            <td class="num py-1 px-1.5 text-right font-bold text-slate-600 border-r border-slate-300 whitespace-nowrap">${fiveXDisplay}</td>
-            <td class="num py-1 px-2 text-right font-black ${it.rate >= 0 ? "text-emerald-700 bg-emerald-50/50" : "text-slate-400"}">${rateDisplay}</td>
+            <td class="num py-1.5 px-1.5 text-right font-bold text-slate-600 border-r border-slate-300 whitespace-nowrap">${fiveXDisplay}</td>
+            <td class="num py-1.5 px-2 text-right font-black ${rate >= 0 ? "text-emerald-700 bg-emerald-50/50" : "text-slate-400"}">${rateDisplay}</td>
           </tr>
         `;
       }).join("");
 
       return `
-        <article data-store-card data-store-name="${store.name.toLowerCase()}" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm flex flex-col">
+        <article data-store-card data-store-name="${escapeHtml(store.name.toLowerCase())}" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm flex flex-col">
           <div class="${store.headerBg} border-b-2 border-slate-900 px-3 py-1.5 flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 min-w-0">
               ${renderStoreThumb(store)}
-              <h3 class="text-xs sm:text-sm font-black tracking-wide uppercase text-slate-900 truncate">${store.name}</h3>
+              <h3 class="text-xs sm:text-sm font-black tracking-wide uppercase text-slate-900 truncate leading-tight">${highlightMatch(store.name, q)}</h3>
             </div>
-            <div class="flex items-center gap-1.5 shrink-0 text-[11px] font-extrabold">
-              <span class="bg-white/85 border border-slate-900 px-2 py-0.5 rounded-md">Lv.${store.unlockLv}</span>
-              <span class="bg-slate-900 text-amber-300 px-2 py-0.5 rounded-md">${store.buildCost}</span>
+            <div class="flex items-center gap-1.5 shrink-0 text-[11px] font-extrabold leading-none">
+              <span class="bg-white/85 border border-slate-900 px-2 py-1 rounded-md">Lv.${store.unlockLv}</span>
+              <span class="bg-slate-900 text-amber-300 px-2 py-1 rounded-md">${store.buildCost}</span>
             </div>
           </div>
-          <div class="table-wrap overflow-x-auto flex-1">
-            <table class="w-full border-collapse text-xs h-full">
+          <div class="table-wrap overflow-x-auto">
+            <table class="w-full border-collapse text-xs">
               <thead>
                 <tr class="bg-slate-100 border-b-2 border-slate-900 text-[10px] font-extrabold uppercase text-slate-900">
-                  <th class="py-1 px-2 text-left border-r border-slate-300">ITEM</th>
-                  <th class="py-1 px-1.5 text-center border-r border-slate-300">LV</th>
-                  <th class="py-1 px-2 text-left border-r border-slate-300">MATERIALS</th>
-                  <th class="py-1 px-1.5 text-center border-r border-slate-300">TIME (${tier.id}★)</th>
-                  <th class="py-1 px-1.5 text-right border-r border-slate-300">1× MAX</th>
-                  <th class="py-1 px-1.5 text-right border-r border-slate-300">5× MAX</th>
-                  <th class="py-1 px-2 text-right">§/MIN</th>
+                  <th class="py-1.5 px-2 text-left border-r border-slate-300">ITEM</th>
+                  <th class="py-1.5 px-1.5 text-center border-r border-slate-300">LV</th>
+                  <th class="py-1.5 px-2 text-left border-r border-slate-300">MATERIALS</th>
+                  <th class="py-1.5 px-1.5 text-center border-r border-slate-300">TIME (${tier.id}★)</th>
+                  <th class="py-1.5 px-1.5 text-right border-r border-slate-300">1× MAX</th>
+                  <th class="py-1.5 px-1.5 text-right border-r border-slate-300">5× MAX</th>
+                  <th class="py-1.5 px-2 text-right">§/MIN</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-300">
@@ -872,6 +905,12 @@
         const list = STORES.filter(s => s.group === g);
         container.innerHTML = list.map(renderStoreCardTable).join("");
       });
+    }
+
+    function renderAllTables() {
+      renderFactories();
+      renderStoreUpgrades();
+      renderAllStoreGrids();
       applyFiltersAndSearch();
     }
 
@@ -881,14 +920,7 @@
       const emptyState = document.getElementById("search-empty-state");
       const emptyText = document.getElementById("search-empty-text");
 
-      // Reset row & card visibility first
-      document.querySelectorAll("[data-row-matchable]").forEach(row => {
-        row.classList.remove("hidden");
-        row.querySelectorAll("[data-search]").forEach(el => {
-          el.classList.remove("bg-amber-300", "text-slate-950", "ring-2", "ring-amber-600");
-        });
-        row.classList.remove("bg-amber-300", "text-slate-950", "ring-2", "ring-amber-600");
-      });
+      document.querySelectorAll("[data-row-matchable]").forEach(row => row.classList.remove("hidden"));
       document.querySelectorAll("[data-store-card]").forEach(card => card.classList.remove("hidden"));
 
       if (!q) {
@@ -900,7 +932,6 @@
         return;
       }
 
-      // Active search: highlight matching rows, filter rows inside matched cards, and show only matching sections/cards
       let totalMatchedSections = 0;
 
       categorizedBlocks.forEach(block => {
@@ -921,13 +952,11 @@
             let matchedRowsInCard = 0;
 
             rows.forEach(row => {
-              const target = row.querySelector("[data-search]") || row;
-              const tokens = target.getAttribute("data-search") || "";
+              const tokens = row.getAttribute("data-search") || "";
               const rowMatches = tokens.includes(q);
 
               if (rowMatches) {
                 matchedRowsInCard += 1;
-                target.classList.add("bg-amber-300", "text-slate-950", "ring-2", "ring-amber-600");
               } else if (!storeNameMatches) {
                 row.classList.add("hidden");
               }
@@ -951,7 +980,6 @@
             const tokens = row.getAttribute("data-search") || "";
             if (tokens.includes(q)) {
               matchedRowsInBlock += 1;
-              row.classList.add("bg-amber-300", "text-slate-950", "ring-2", "ring-amber-600");
             } else {
               row.classList.add("hidden");
             }
@@ -974,9 +1002,7 @@
     // =========================================================================
     // 4. INITIALIZE & WIRE CONTROLS
     // =========================================================================
-    renderFactories();
-    renderStoreUpgrades();
-    renderAllStoreGrids();
+    renderAllTables();
 
     // Category Filter Buttons
     const filterButtons = document.querySelectorAll(".filter-btn");
@@ -1017,21 +1043,8 @@
         });
 
         renderAllStoreGrids();
+        applyFiltersAndSearch();
       });
-    });
-
-    // Sort by §/min Toggle
-    const toggleSort = document.getElementById("toggle-sort");
-    const toggleSortLabel = document.getElementById("toggle-sort-label");
-    toggleSort.addEventListener("change", () => {
-      state.sortByRate = toggleSort.checked;
-      toggleSortLabel.classList.toggle("bg-teal-700", state.sortByRate);
-      toggleSortLabel.classList.toggle("text-white", state.sortByRate);
-      toggleSortLabel.classList.toggle("border-teal-800", state.sortByRate);
-      toggleSortLabel.classList.toggle("bg-slate-100", !state.sortByRate);
-      toggleSortLabel.classList.toggle("text-slate-800", !state.sortByRate);
-      toggleSortLabel.classList.toggle("border-slate-300", !state.sortByRate);
-      renderAllStoreGrids();
     });
 
     // Search + Ingredient Scope
@@ -1042,20 +1055,20 @@
     searchInput.addEventListener("input", e => {
       state.searchQuery = e.target.value.trim().toLowerCase();
       clearSearchBtn.classList.toggle("hidden", state.searchQuery.length === 0);
-      applyFiltersAndSearch();
+      renderAllTables();
     });
 
     clearSearchBtn.addEventListener("click", () => {
       searchInput.value = "";
       state.searchQuery = "";
       clearSearchBtn.classList.add("hidden");
-      applyFiltersAndSearch();
+      renderAllTables();
       searchInput.focus();
     });
 
     toggleIngredients.addEventListener("change", () => {
       state.includeIngredients = toggleIngredients.checked;
-      renderAllStoreGrids();
+      renderAllTables();
     });
   </script>
 </body>
