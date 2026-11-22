@@ -20,7 +20,8 @@
 
     button,
     label,
-    input {
+    input,
+    select {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -78,17 +79,36 @@
   <!-- Interactive Control Bar -->
   <div class="no-print max-w-[1440px] mx-auto mb-4 bg-white/95 backdrop-blur border border-sky-200 rounded-2xl p-3 sm:p-4 shadow-sm space-y-2.5">
     <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-      <!-- Category Filter Pills -->
-      <div class="flex flex-wrap items-center gap-1.5" id="filter-bar">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">View:</span>
-        <button data-filter="all" class="filter-btn active px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">All Sections</button>
-        <button data-filter="factories" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Factories &amp; Raw Materials</button>
-        <button data-filter="upgrades" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Store Upgrades (1★–3★)</button>
-        <button data-filter="slots" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Slot Costs (3–11)</button>
-        <button data-filter="year-round" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Year-Round Stores</button>
-        <button data-filter="regional" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Regional Stores</button>
-        <button data-filter="seasonal" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Seasonal Stores</button>
-        <button data-filter="vu-generator" class="filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">Vu's Random Generator</button>
+      <!-- Dropdown Section Selector -->
+      <div class="flex flex-wrap items-center gap-2">
+        <label for="section-select" class="text-xs font-bold uppercase tracking-wider text-slate-500">Section:</label>
+        <div class="relative flex-1 sm:flex-initial min-w-[215px]">
+          <select
+            id="section-select"
+            aria-label="Select chart section"
+            class="w-full appearance-none pl-3 pr-8 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 transition duration-75"
+          >
+            <option value="all" class="bg-white text-slate-900 font-semibold">All Sections (Complete Chart)</option>
+            <option value="factories" class="bg-white text-slate-900 font-semibold">Factories &amp; Raw Materials</option>
+            <option value="upgrades" class="bg-white text-slate-900 font-semibold">Store Upgrades (1★–3★)</option>
+            <option value="slots" class="bg-white text-slate-900 font-semibold">Slot Costs (3–11)</option>
+            <option value="year-round" class="bg-white text-slate-900 font-semibold">Year-Round Stores (14)</option>
+            <option value="regional" class="bg-white text-slate-900 font-semibold">Regional Stores (5)</option>
+            <option value="seasonal" class="bg-white text-slate-900 font-semibold">Seasonal Stores (2)</option>
+            <option value="vu-generator" class="bg-white text-slate-900 font-semibold">Vu's Random Generator</option>
+          </select>
+          <svg class="w-4 h-4 text-white pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
+          </svg>
+        </div>
+
+        <button
+          id="reset-section-btn"
+          type="button"
+          class="hidden px-2.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75"
+        >
+          Show All
+        </button>
       </div>
 
       <!-- Search Input + Ingredient Scope -->
@@ -1156,11 +1176,12 @@
     }
 
     // =========================================================================
-    // 4. INITIALIZE & WIRE CONTROLS (EMERALD GREEN ACTIVE & PRESS STATES)
+    // 4. INITIALIZE & WIRE CONTROLS (DROPDOWN + EMERALD GREEN STATES)
     // =========================================================================
     renderAllTables();
 
-    const filterButtons = document.querySelectorAll(".filter-btn");
+    const sectionSelect = document.getElementById("section-select");
+    const resetSectionBtn = document.getElementById("reset-section-btn");
     const starButtons = document.querySelectorAll(".star-btn");
     const tierBadge = document.getElementById("active-tier-badge");
     const searchInput = document.getElementById("search-input");
@@ -1180,6 +1201,25 @@
       }
     }
 
+    function syncSectionSelectUI() {
+      const isFiltered = state.activeFilter !== "all";
+      resetSectionBtn.classList.toggle("hidden", !isFiltered);
+    }
+
+    sectionSelect.addEventListener("change", () => {
+      state.activeFilter = sectionSelect.value;
+      syncSectionSelectUI();
+      applyFiltersAndSearch();
+    });
+
+    resetSectionBtn.addEventListener("click", () => {
+      state.activeFilter = "all";
+      sectionSelect.value = "all";
+      syncSectionSelectUI();
+      resetSectionBtn.blur();
+      applyFiltersAndSearch();
+    });
+
     function syncIngredientsLabelState() {
       setPillActive(ingredientsLabel, toggleIngredients.checked, true);
     }
@@ -1194,30 +1234,6 @@
     ingredientsLabel.addEventListener("pointerup", clearIngredientsPress);
     ingredientsLabel.addEventListener("pointercancel", clearIngredientsPress);
     ingredientsLabel.addEventListener("pointerleave", clearIngredientsPress);
-
-    filterButtons.forEach(btn => {
-      btn.addEventListener("pointerdown", () => {
-        btn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-      });
-      const clearPress = () => {
-        btn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-        setPillActive(btn, btn.getAttribute("data-filter") === state.activeFilter);
-      };
-      btn.addEventListener("pointerup", clearPress);
-      btn.addEventListener("pointercancel", clearPress);
-      btn.addEventListener("pointerleave", clearPress);
-
-      btn.addEventListener("click", () => {
-        state.activeFilter = btn.getAttribute("data-filter");
-        filterButtons.forEach(b => {
-          const isMatch = b.getAttribute("data-filter") === state.activeFilter;
-          b.classList.toggle("active", isMatch);
-          setPillActive(b, isMatch);
-        });
-        btn.blur();
-        applyFiltersAndSearch();
-      });
-    });
 
     starButtons.forEach(btn => {
       btn.addEventListener("pointerdown", () => {
@@ -1266,6 +1282,7 @@
     });
 
     syncIngredientsLabelState();
+    syncSectionSelectUI();
   </script>
 </body>
 </html>
