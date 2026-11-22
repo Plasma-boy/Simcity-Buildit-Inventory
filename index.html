@@ -91,8 +91,8 @@
             >
               <option value="all" class="bg-white text-slate-900 font-semibold">All Sections (Complete Chart)</option>
               <option value="factories" class="bg-white text-slate-900 font-semibold">Factories &amp; Raw Materials</option>
-              <option value="upgrades" class="bg-white text-slate-900 font-semibold">Store Upgrades (1★–3★)</option>
-              <option value="slots" class="bg-white text-slate-900 font-semibold">Slot Costs (3–11)</option>
+              <option value="upgrades" class="bg-white text-slate-900 font-semibold">Store Upgrades (1★-3★)</option>
+              <option value="slots" class="bg-white text-slate-900 font-semibold">Slot Costs (3-11)</option>
               <option value="year-round" class="bg-white text-slate-900 font-semibold">Year-Round Stores (14)</option>
               <option value="regional" class="bg-white text-slate-900 font-semibold">Regional Stores (5)</option>
               <option value="seasonal" class="bg-white text-slate-900 font-semibold">Seasonal Stores (2)</option>
@@ -137,10 +137,10 @@
         </div>
       </div>
 
-      <!-- Right: Grouped Search + Sort §/min + Daily Coin Planner Button -->
-      <div class="flex flex-wrap items-center gap-2">
-        <div class="flex flex-1 sm:flex-initial items-stretch bg-slate-50 border border-slate-300 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-emerald-600 focus-within:border-emerald-600 transition duration-75">
-          <div class="relative flex-1 flex items-center">
+      <!-- Right: Search Gets Dedicated Full Row on Phone, Compact Row on PC -->
+      <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2 w-full lg:w-auto">
+        <div class="flex w-full sm:w-auto flex-1 sm:flex-initial items-stretch bg-slate-50 border border-slate-300 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-emerald-600 focus-within:border-emerald-600 transition duration-75">
+          <div class="relative flex-1 flex items-center min-w-0">
             <input
               id="search-input"
               type="text"
@@ -161,35 +161,37 @@
 
           <label
             id="ingredients-label"
-            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold border-l border-slate-300 bg-emerald-50/70 text-slate-800 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75"
+            class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold border-l border-slate-300 bg-emerald-50/70 text-slate-800 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shrink-0 transition duration-75"
           >
             <input id="toggle-ingredients" type="checkbox" class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
             <span>Include ingredients</span>
           </label>
         </div>
 
-        <button
-          id="sort-rate-desc-btn"
-          type="button"
-          aria-pressed="false"
-          class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-2 ring-emerald-500/20 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
-        >
-          <span>Sort §/min</span>
-          <span aria-hidden="true" class="text-sm leading-none">↓</span>
-        </button>
+        <div class="flex items-center gap-2">
+          <button
+            id="sort-rate-desc-btn"
+            type="button"
+            aria-pressed="false"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-2 ring-emerald-500/20 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
+          >
+            <span>Sort §/min</span>
+            <span aria-hidden="true" class="text-sm leading-none">↓</span>
+          </button>
 
-        <button
-          id="toggle-advisor-btn"
-          type="button"
-          aria-pressed="false"
-          class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50/80 text-slate-900 border-2 border-emerald-500 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
-        >
-          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="#facc15" stroke="#854d0e" stroke-width="2"/>
-            <text x="12" y="16.2" text-anchor="middle" font-size="12" font-weight="900" fill="#713f12">§</text>
-          </svg>
-          <span>Daily Coin Planner</span>
-        </button>
+          <button
+            id="toggle-advisor-btn"
+            type="button"
+            aria-pressed="false"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50/80 text-slate-900 border-2 border-emerald-500 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
+          >
+            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" fill="#facc15" stroke="#854d0e" stroke-width="2"/>
+              <text x="12" y="16.2" text-anchor="middle" font-size="12" font-weight="900" fill="#713f12">§</text>
+            </svg>
+            <span>Daily Coin Planner</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -216,7 +218,7 @@
       </div>
 
       <h1 class="text-lg sm:text-2xl md:text-[26px] font-black tracking-wide uppercase text-white">
-        SIMCITY BUILDIT<span class="text-amber-300">INVENTORY</span> - <span class="text-cyan-300">PRODUCTION &amp; TRADE</span> CHART
+        SIMCITY <span class="text-amber-300">BUILDIT INVENTORY</span> - <span class="text-cyan-300">PRODUCTION &amp; TRADE</span> CHART
       </h1>
 
       <div class="flex items-center gap-2 text-xs font-bold text-teal-100">
@@ -224,7 +226,7 @@
       </div>
     </header>
 
-    <!-- Collapsible Daily Coin Planner Panel (Self-Contained & Table-Structured) -->
+    <!-- Exclusive Daily Coin Planner View (Hides Other Sections When Active) -->
     <section id="coin-advisor-panel" class="hidden section-block bg-white border-2 border-slate-900 rounded-xl overflow-visible shadow-sm">
       <div class="bg-[#a7f3d0] border-b-2 border-slate-900 rounded-t-[10px] px-3 py-2 flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
@@ -232,7 +234,7 @@
           <span id="advisor-mode-pill" class="text-[11px] font-extrabold bg-emerald-900 text-white px-2.5 py-0.5 rounded-full whitespace-nowrap">Chill &amp; No-Clash</span>
         </div>
         <div id="advisor-daily-summary" class="num text-xs font-black text-emerald-950 bg-white/95 border border-slate-900 px-2.5 py-1 rounded-lg whitespace-nowrap">
-          ~0–0 §/day
+          ~0-0 §/day
         </div>
       </div>
 
@@ -337,7 +339,7 @@
     <!-- =========================================================
          SECTION 1: FACTORIES & RAW MATERIALS (Side-by-Side)
     ========================================================= -->
-    <div data-category="factories" class="grid grid-cols-1 xl:grid-cols-12 gap-3.5">
+    <div data-category="factories" data-chart-section class="grid grid-cols-1 xl:grid-cols-12 gap-3.5">
       <!-- Industrial Raw Materials (11) -->
       <section class="section-block xl:col-span-7 bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm flex flex-col">
         <div class="bg-[#fde68a] border-b-2 border-slate-900 px-3 py-1.5 flex items-center justify-center gap-2">
@@ -364,7 +366,7 @@
     <!-- =========================================================
          SECTION 2: COMMERCIAL STORE STAR UPGRADE COSTS
     ========================================================= -->
-    <section data-category="upgrades" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+    <section data-category="upgrades" data-chart-section class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
       <div class="bg-[#cbd5e1] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-center gap-2 text-center">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">COMMERCIAL STORE UPGRADE COSTS &amp; SPEED TIERS</h2>
         <span class="text-[11px] font-bold text-slate-700">(1★ = -10% • 2★ = -15% • 3★ = -20%)</span>
@@ -377,9 +379,9 @@
     <!-- =========================================================
          SECTION 2B: SLOT-OPENING & CUMULATIVE SIMCASH COSTS
     ========================================================= -->
-    <section data-category="slots" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+    <section data-category="slots" data-chart-section class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
       <div class="bg-[#a5f3fc] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-center gap-2 text-center">
-        <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SLOT-OPENING &amp; CUMULATIVE SIMCASH COSTS (SLOTS 3–11)</h2>
+        <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SLOT-OPENING &amp; CUMULATIVE SIMCASH COSTS (SLOTS 3-11)</h2>
         <span class="text-[11px] font-bold text-cyan-950">(Per-Slot Cost &amp; Cumulative Total)</span>
       </div>
       <div class="table-wrap overflow-x-auto">
@@ -390,7 +392,7 @@
     <!-- =========================================================
          SECTION 3: YEAR-ROUND COMMERCIAL STORES (14 Stores)
     ========================================================= -->
-    <section data-category="year-round" class="space-y-2.5">
+    <section data-category="year-round" data-chart-section class="space-y-2.5">
       <div class="bg-[#93c5fd] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">YEAR-ROUND COMMERCIAL STORES (14 SHOPS)</h2>
       </div>
@@ -400,7 +402,7 @@
     <!-- =========================================================
          SECTION 4: REGIONAL COMMERCIAL STORES (5 Stores)
     ========================================================= -->
-    <section data-category="regional" class="space-y-2.5">
+    <section data-category="regional" data-chart-section class="space-y-2.5">
       <div class="bg-[#fdba74] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">REGIONAL COMMERCIAL STORES (5 SHOPS)</h2>
       </div>
@@ -410,7 +412,7 @@
     <!-- =========================================================
          SECTION 5: SEASONAL COMMERCIAL STORES (2 Stores)
     ========================================================= -->
-    <section data-category="seasonal" class="space-y-2.5">
+    <section data-category="seasonal" data-chart-section class="space-y-2.5">
       <div class="bg-[#d8b4fe] border-2 border-slate-900 rounded-xl px-3 py-1.5 text-center shadow-sm">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">SEASONAL COMMERCIAL STORES (2 SHOPS)</h2>
       </div>
@@ -420,7 +422,7 @@
     <!-- =========================================================
          SECTION 5B: VU'S RANDOM GENERATOR (Dedicated Section)
     ========================================================= -->
-    <section data-category="vu-generator" class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+    <section data-category="vu-generator" data-chart-section class="section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
       <div class="bg-[#fca5a5] border-b-2 border-slate-900 px-3 py-1.5 flex flex-wrap items-center justify-between gap-2">
         <h2 class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">VU'S RANDOM GENERATOR</h2>
         <div class="flex items-center gap-1.5 text-[11px] font-extrabold">
@@ -433,7 +435,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
           <div class="bg-rose-50/70 border border-rose-200 rounded-xl p-2.5">
             <div class="font-black uppercase text-slate-900 text-[11px]">How It Works</div>
-            <p class="font-semibold text-slate-700 mt-1">Adopts the production catalog and speed tier of a randomly selected commercial building, allowing access to items/slots without building every separate shop first.</p>
+            <p class="font-semibold text-slate-700 mt-1">Adopts the production catalog and speed tier of a randomly selected commercial building - allowing access to items/slots without building every separate shop first.</p>
           </div>
           <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-2.5">
             <div class="font-black uppercase text-slate-900 text-[11px]">Slot Unlock Pricing</div>
@@ -441,7 +443,7 @@
           </div>
           <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-2.5">
             <div class="font-black uppercase text-slate-900 text-[11px]">Cumulative Investment</div>
-            <p class="font-semibold text-slate-700 mt-1">Unlocking Slots 3–5 costs <span class="font-extrabold text-slate-900">420 SimCash</span>; Slots 3–8 costs <span class="font-extrabold text-slate-900">1,380 SimCash</span>; full unlock through Slot 11 totals <span class="font-extrabold text-emerald-800">2,880 SimCash</span>.</p>
+            <p class="font-semibold text-slate-700 mt-1">Unlocking Slots 3-5 costs <span class="font-extrabold text-slate-900">420 SimCash</span>; Slots 3-8 costs <span class="font-extrabold text-slate-900">1,380 SimCash</span>; full unlock through Slot 11 totals <span class="font-extrabold text-emerald-800">2,880 SimCash</span>.</p>
           </div>
         </div>
 
@@ -641,7 +643,7 @@
     }
 
     function formatDuration(baseMins, reduction) {
-      if (!baseMins || baseMins <= 0) return "—";
+      if (!baseMins || baseMins <= 0) return "-";
       const adjMins = Math.max(1, Math.round(baseMins * (1 - reduction)));
       if (adjMins < 60) return `${adjMins}m`;
       const hrs = Math.floor(adjMins / 60);
@@ -706,6 +708,31 @@
       { name: "Dessert Shop", unlockLv: 55, build: "350,000", s1: "450,000", s1Lv: 87, s2: "550,000", s2Lv: 93, s3: "870,000", s3Lv: 97, total: "1,870,000" },
       { name: "Regional Stores (All 5)", unlockLv: 25, build: "13,000", s1: "25,000", s1Lv: 25, s2: "37,000", s2Lv: 25, s3: "45,000", s3Lv: 25, total: "107,000" }
     ];
+
+    const STORE_STAR_UNLOCK_MAP = new Map(
+      STORE_UPGRADES.map(u => [u.name, { s1Lv: u.s1Lv, s2Lv: u.s2Lv, s3Lv: u.s3Lv }])
+    );
+
+    function getEffectiveStarTier(storeName, cityLv, requestedStar) {
+      let maxAllowedStar = requestedStar;
+      if (storeName.startsWith("Eco Shop") || storeName.startsWith("Tropical Products Store") || storeName.startsWith("Car Parts") || storeName.startsWith("Silk Store") || storeName.startsWith("Fish Marketplace")) {
+        const regInfo = STORE_STAR_UNLOCK_MAP.get("Regional Stores (All 5)");
+        if (regInfo && cityLv < regInfo.s1Lv) maxAllowedStar = 0;
+      } else {
+        const info = STORE_STAR_UNLOCK_MAP.get(storeName);
+        if (info) {
+          let unlockedStars = 0;
+          if (cityLv >= info.s1Lv) unlockedStars = 1;
+          if (cityLv >= info.s2Lv) unlockedStars = 2;
+          if (cityLv >= info.s3Lv) unlockedStars = 3;
+          maxAllowedStar = Math.min(requestedStar, unlockedStars);
+        }
+      }
+      return {
+        tier: STAR_TIERS[Math.max(0, maxAllowedStar)] || STAR_TIERS[0],
+        wasCapped: maxAllowedStar < requestedStar
+      };
+    }
 
     const STORES = [
       // ==================== YEAR-ROUND (14) ====================
@@ -1025,7 +1052,7 @@
     ];
 
     // =========================================================================
-    // 3. CURATED PRACTICAL DAILY COIN PLANNER ENGINE (TABLE WITH TIME/RATE/AMT)
+    // 3. CURATED PRACTICAL DAILY COIN PLANNER ENGINE (LEVEL-CAPPED STARS)
     // =========================================================================
     function pickCuratedItemForStore(store, lv, playstyle) {
       const unlocked = store.items.filter(it => it.lv <= lv && it.price > 0 && it.mins > 0);
@@ -1101,7 +1128,7 @@
       if (!state.advisorOpen) return;
 
       const lv = Math.min(99, Math.max(1, Number(state.cityLevel) || 1));
-      const tier = STAR_TIERS[state.activeStar];
+      const requestedTier = STAR_TIERS[state.activeStar];
 
       const regionsDropdownBtn = document.getElementById("regions-dropdown-btn");
       if (regionsDropdownBtn) {
@@ -1127,16 +1154,17 @@
       eligibleStores.forEach(store => {
         const picked = pickCuratedItemForStore(store, lv, state.playstyle);
         if (!picked) return;
-        const m = computeDailyMetrics(picked, tier.reduction, state.playstyle);
+        const { tier: effTier, wasCapped } = getEffectiveStarTier(store.name, lv, state.activeStar);
+        const m = computeDailyMetrics(picked, effTier.reduction, state.playstyle);
         totalLow += m.lowCoins;
         totalHigh += m.highCoins;
-        rows.push({ store, item: picked, m });
+        rows.push({ store, item: picked, m, effTier, wasCapped });
       });
 
-      document.getElementById("advisor-heading").textContent = `LV.${lv} DAILY COIN PLANNER (${tier.label})`;
+      document.getElementById("advisor-heading").textContent = `LV.${lv} DAILY COIN PLANNER (STAR CAP: ${requestedTier.label})`;
       document.getElementById("advisor-mode-pill").textContent = PLAYSTYLE_LABELS[state.playstyle] || PLAYSTYLE_LABELS.chill;
       document.getElementById("advisor-daily-summary").textContent =
-        `~${totalLow.toLocaleString()}–${totalHigh.toLocaleString()} §/day`;
+        `~${totalLow.toLocaleString()}-${totalHigh.toLocaleString()} §/day`;
 
       const tableEl = document.getElementById("advisor-picks-table");
       if (rows.length === 0) {
@@ -1150,17 +1178,20 @@
             <th class="py-1.5 px-2.5 text-left border-r border-slate-300 whitespace-nowrap">ITEM &amp; STORE</th>
             <th class="py-1.5 px-2 text-left border-r border-slate-300 whitespace-nowrap">MATERIALS</th>
             <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">1× MAX</th>
-            <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">TIME (${tier.id}★)</th>
+            <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">TIME</th>
             <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">RATE (§/M)</th>
             <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">AMT TO MAKE</th>
             <th class="py-1.5 px-2.5 text-right whitespace-nowrap">EST. / DAY</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-300">
-          ${rows.map(({ store, item, m }) => {
+          ${rows.map(({ store, item, m, effTier, wasCapped }) => {
             const noteBadge = m.gate
               ? `<span class="text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.5 rounded whitespace-nowrap">${escapeHtml(m.gate.note)}</span>`
               : "";
+            const capTag = wasCapped
+              ? `<span class="ml-1 text-[10px] font-bold text-slate-500">(${effTier.id}★ @ Lv.${lv})</span>`
+              : `<span class="ml-1 text-[10px] font-bold text-slate-500">(${effTier.id}★)</span>`;
 
             return `
               <tr class="hover:bg-emerald-50/50 transition-colors">
@@ -1180,10 +1211,10 @@
                 <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
                   <div class="flex items-center justify-end gap-1"><span>${item.price.toLocaleString()}</span>${simoleonCoinSVG()}</div>
                 </td>
-                <td class="num py-1.5 px-2 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${formatDuration(item.mins, tier.reduction)}</td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${formatDuration(item.mins, effTier.reduction)}${capTag}</td>
                 <td class="num py-1.5 px-2 text-right font-black text-emerald-700 border-r border-slate-300 whitespace-nowrap">${m.shopRate.toFixed(2)}</td>
-                <td class="num py-1.5 px-2 text-center font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">~${m.lowUnits}–${m.highUnits}/d</td>
-                <td class="num py-1.5 px-2.5 text-right font-black text-emerald-950 bg-emerald-50/70 whitespace-nowrap">~${m.lowCoins.toLocaleString()}–${m.highCoins.toLocaleString()} §</td>
+                <td class="num py-1.5 px-2 text-center font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">~${m.lowUnits}-${m.highUnits}/d</td>
+                <td class="num py-1.5 px-2.5 text-right font-black text-emerald-950 bg-emerald-50/70 whitespace-nowrap">~${m.lowCoins.toLocaleString()}-${m.highCoins.toLocaleString()} §</td>
               </tr>
             `;
           }).join("")}
@@ -1397,10 +1428,10 @@
           ? `${it.name.toLowerCase()} ${it.mats.toLowerCase()}`
           : `${it.name.toLowerCase()}`;
 
-        const timeDisplay = it.mins > 0 ? formatDuration(it.mins, tier.reduction) : "—";
-        const priceDisplay = it.price > 0 ? `${it.price.toLocaleString()}` : "—";
-        const fiveXDisplay = it.price > 0 ? `${(it.price * 5).toLocaleString()}` : "—";
-        const rateDisplay = rate >= 0 ? rate.toFixed(2) : "—";
+        const timeDisplay = it.mins > 0 ? formatDuration(it.mins, tier.reduction) : "-";
+        const priceDisplay = it.price > 0 ? `${it.price.toLocaleString()}` : "-";
+        const fiveXDisplay = it.price > 0 ? `${(it.price * 5).toLocaleString()}` : "-";
+        const rateDisplay = rate >= 0 ? rate.toFixed(2) : "-";
 
         const highlightedName = highlightMatch(it.name, q);
         const highlightedMats = state.includeIngredients ? highlightMatch(it.mats, q) : escapeHtml(it.mats);
@@ -1417,7 +1448,7 @@
             <td class="py-1.5 px-2 text-[11px] font-semibold text-slate-700 border-r border-slate-300 min-w-[145px]">${highlightedMats}</td>
             <td class="num py-1.5 px-1.5 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${timeDisplay}</td>
             <td class="num py-1.5 px-1.5 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
-              ${it.price > 0 ? `<div class="flex items-center justify-end gap-1"><span>${priceDisplay}</span>${simoleonCoinSVG()}</div>` : "—"}
+              ${it.price > 0 ? `<div class="flex items-center justify-end gap-1"><span>${priceDisplay}</span>${simoleonCoinSVG()}</div>` : "-"}
             </td>
             <td class="num py-1.5 px-1.5 text-right font-bold text-slate-600 border-r border-slate-300 whitespace-nowrap">${fiveXDisplay}</td>
             <td class="num py-1.5 px-2 text-right font-black whitespace-nowrap ${rate >= 0 ? "text-emerald-700 bg-emerald-50/50" : "text-slate-400"}">${rateDisplay}</td>
@@ -1480,16 +1511,23 @@
 
     function applyFiltersAndSearch() {
       const q = state.searchQuery;
-      const categorizedBlocks = document.querySelectorAll("[data-category]");
+      const chartSections = document.querySelectorAll("[data-chart-section]");
       const emptyState = document.getElementById("search-empty-state");
       const emptyText = document.getElementById("search-empty-text");
 
       document.querySelectorAll("[data-row-matchable]").forEach(row => row.classList.remove("hidden"));
       document.querySelectorAll("[data-store-card]").forEach(card => card.classList.remove("hidden"));
 
+      // When Daily Coin Planner is open, hide all regular chart sections so only the planner shows
+      if (state.advisorOpen) {
+        emptyState.classList.add("hidden");
+        chartSections.forEach(sec => sec.classList.add("hidden"));
+        return;
+      }
+
       if (!q) {
         emptyState.classList.add("hidden");
-        categorizedBlocks.forEach(block => {
+        chartSections.forEach(block => {
           const cat = block.getAttribute("data-category");
           block.classList.toggle("hidden", state.activeFilter !== "all" && cat !== state.activeFilter);
         });
@@ -1498,7 +1536,7 @@
 
       let totalMatchedSections = 0;
 
-      categorizedBlocks.forEach(block => {
+      chartSections.forEach(block => {
         const cat = block.getAttribute("data-category");
         const inSelectedCategory = state.activeFilter === "all" || cat === state.activeFilter;
         if (!inSelectedCategory) {
@@ -1603,6 +1641,11 @@
 
     sectionSelect.addEventListener("change", () => {
       state.activeFilter = sectionSelect.value;
+      if (state.advisorOpen) {
+        state.advisorOpen = false;
+        syncAdvisorBtnState();
+        document.getElementById("coin-advisor-panel").classList.add("hidden");
+      }
       syncSectionSelectUI();
       applyFiltersAndSearch();
     });
@@ -1610,6 +1653,11 @@
     resetSectionBtn.addEventListener("click", () => {
       state.activeFilter = "all";
       sectionSelect.value = "all";
+      if (state.advisorOpen) {
+        state.advisorOpen = false;
+        syncAdvisorBtnState();
+        document.getElementById("coin-advisor-panel").classList.add("hidden");
+      }
       syncSectionSelectUI();
       resetSectionBtn.blur();
       applyFiltersAndSearch();
@@ -1697,6 +1745,7 @@
       syncAdvisorBtnState();
       toggleAdvisorBtn.blur();
       renderCoinAdvisor();
+      applyFiltersAndSearch();
     });
 
     cityLevelInput.addEventListener("input", () => {
