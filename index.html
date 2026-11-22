@@ -111,40 +111,45 @@
         </button>
       </div>
 
-      <!-- Search Input + Ingredient Scope + Universal §/min Desc Sort -->
-      <div class="flex flex-wrap items-center gap-2">
-        <div class="relative flex-1 sm:flex-initial">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Search item, store, or zone..."
-            class="w-full sm:w-64 pl-8 pr-7 py-1.5 text-xs bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent"
-          />
-          <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </svg>
-          <button
-            id="clear-search-btn"
-            type="button"
-            aria-label="Clear search"
-            class="hidden absolute right-2 top-1.5 text-slate-400 hover:text-emerald-700 text-xs font-extrabold px-1"
-          >✕</button>
-        </div>
+      <!-- Grouped Search + Include Ingredients + Prominent §/min Sort -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <div class="flex flex-1 sm:flex-initial items-stretch bg-slate-50 border border-slate-300 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-emerald-600 focus-within:border-emerald-600 transition duration-75">
+          <div class="relative flex-1 flex items-center">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Search item, store, or zone..."
+              class="w-full sm:w-56 pl-8 pr-7 py-1.5 text-xs bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none"
+            />
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <button
+              id="clear-search-btn"
+              type="button"
+              aria-label="Clear search"
+              class="hidden absolute right-1.5 text-slate-400 hover:text-emerald-700 text-xs font-extrabold px-1"
+            >✕</button>
+          </div>
 
-        <label id="ingredients-label" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none transition duration-75">
-          <input id="toggle-ingredients" type="checkbox" class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
-          <span>Include ingredients</span>
-        </label>
+          <label
+            id="ingredients-label"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold border-l border-slate-300 bg-emerald-50/70 text-slate-800 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75"
+          >
+            <input id="toggle-ingredients" type="checkbox" class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
+            <span>Include ingredients</span>
+          </label>
+        </div>
 
         <button
           id="sort-rate-desc-btn"
           type="button"
           aria-pressed="false"
-          class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none transition duration-75 focus:outline-none"
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-2 ring-emerald-500/20 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
         >
-          <span>§/min</span>
-          <span aria-hidden="true">↓</span>
+          <span>Sort §/min</span>
+          <span aria-hidden="true" class="text-sm leading-none">↓</span>
         </button>
       </div>
     </div>
@@ -1227,6 +1232,9 @@
     const INACTIVE_PILL_CLASSES = ["bg-emerald-50/70", "text-slate-800", "border-emerald-200", "hover:bg-emerald-100"];
     const ACTIVE_PILL_CLASSES = ["bg-emerald-600", "text-white", "border-emerald-700", "shadow-sm"];
 
+    const SORT_BTN_INACTIVE = ["bg-emerald-50", "text-emerald-950", "border-2", "border-emerald-500", "ring-2", "ring-emerald-500/20", "hover:bg-emerald-100"];
+    const SORT_BTN_ACTIVE = ["bg-emerald-600", "text-white", "border-2", "border-emerald-800", "ring-2", "ring-emerald-600/30", "shadow-sm"];
+
     function setPillActive(el, isActive, boldWhenActive = true) {
       el.classList.remove(...INACTIVE_PILL_CLASSES, ...ACTIVE_PILL_CLASSES, "font-bold", "font-semibold");
       if (isActive) {
@@ -1256,14 +1264,19 @@
     });
 
     function syncIngredientsLabelState() {
-      setPillActive(ingredientsLabel, toggleIngredients.checked, true);
+      ingredientsLabel.classList.remove("bg-emerald-50/70", "bg-emerald-50", "text-slate-800", "bg-emerald-600", "text-white");
+      if (toggleIngredients.checked) {
+        ingredientsLabel.classList.add("bg-emerald-600", "text-white");
+      } else {
+        ingredientsLabel.classList.add("bg-emerald-50/70", "text-slate-800");
+      }
     }
 
     ingredientsLabel.addEventListener("pointerdown", () => {
-      ingredientsLabel.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
+      ingredientsLabel.classList.add("bg-emerald-500", "text-white", "scale-[0.98]");
     });
     const clearIngredientsPress = () => {
-      ingredientsLabel.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
+      ingredientsLabel.classList.remove("bg-emerald-500", "text-white", "scale-[0.98]");
       syncIngredientsLabelState();
     };
     ingredientsLabel.addEventListener("pointerup", clearIngredientsPress);
@@ -1272,14 +1285,19 @@
 
     function syncSortRateBtnState() {
       sortRateDescBtn.setAttribute("aria-pressed", String(state.sortRateDesc));
-      setPillActive(sortRateDescBtn, state.sortRateDesc, true);
+      sortRateDescBtn.classList.remove(...SORT_BTN_INACTIVE, ...SORT_BTN_ACTIVE);
+      if (state.sortRateDesc) {
+        sortRateDescBtn.classList.add(...SORT_BTN_ACTIVE);
+      } else {
+        sortRateDescBtn.classList.add(...SORT_BTN_INACTIVE);
+      }
     }
 
     sortRateDescBtn.addEventListener("pointerdown", () => {
-      sortRateDescBtn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+      sortRateDescBtn.classList.add("bg-emerald-500", "text-white", "scale-[0.97]");
     });
     const clearSortPress = () => {
-      sortRateDescBtn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+      sortRateDescBtn.classList.remove("bg-emerald-500", "text-white", "scale-[0.97]");
       syncSortRateBtnState();
     };
     sortRateDescBtn.addEventListener("pointerup", clearSortPress);
