@@ -76,50 +76,76 @@
 </head>
 <body class="min-h-screen py-4 px-2 sm:px-4 md:px-6">
 
-  <!-- Interactive Control Bar -->
+  <!-- Interactive Control Bar (Clean & Mobile-Tidy) -->
   <div class="no-print max-w-[1440px] mx-auto mb-4 bg-white/95 backdrop-blur border border-sky-200 rounded-2xl p-3 sm:p-4 shadow-sm space-y-2.5">
-    <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3">
-      <!-- Dropdown Section Selector -->
-      <div class="flex flex-wrap items-center gap-2">
-        <label for="section-select" class="text-xs font-bold uppercase tracking-wider text-slate-500">Section:</label>
-        <div class="relative flex-1 sm:flex-initial min-w-[215px]">
-          <select
-            id="section-select"
-            aria-label="Select chart section"
-            class="w-full appearance-none pl-3 pr-8 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 transition duration-75"
+    <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-2.5">
+      <!-- Left: Section Dropdown + Global Shop Star Level Dropdown -->
+      <div class="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2">
+        <div class="flex items-center gap-1.5">
+          <label for="section-select" class="text-xs font-bold uppercase tracking-wider text-slate-500 whitespace-nowrap">Section:</label>
+          <div class="relative flex-1 sm:min-w-[205px]">
+            <select
+              id="section-select"
+              aria-label="Select chart section"
+              class="w-full appearance-none pl-3 pr-8 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 transition duration-75"
+            >
+              <option value="all" class="bg-white text-slate-900 font-semibold">All Sections (Complete Chart)</option>
+              <option value="factories" class="bg-white text-slate-900 font-semibold">Factories &amp; Raw Materials</option>
+              <option value="upgrades" class="bg-white text-slate-900 font-semibold">Store Upgrades (1★–3★)</option>
+              <option value="slots" class="bg-white text-slate-900 font-semibold">Slot Costs (3–11)</option>
+              <option value="year-round" class="bg-white text-slate-900 font-semibold">Year-Round Stores (14)</option>
+              <option value="regional" class="bg-white text-slate-900 font-semibold">Regional Stores (5)</option>
+              <option value="seasonal" class="bg-white text-slate-900 font-semibold">Seasonal Stores (2)</option>
+              <option value="vu-generator" class="bg-white text-slate-900 font-semibold">Vu's Random Generator</option>
+            </select>
+            <svg class="w-4 h-4 text-white pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
+            </svg>
+          </div>
+          <button
+            id="reset-section-btn"
+            type="button"
+            class="hidden px-2.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 whitespace-nowrap"
           >
-            <option value="all" class="bg-white text-slate-900 font-semibold">All Sections (Complete Chart)</option>
-            <option value="factories" class="bg-white text-slate-900 font-semibold">Factories &amp; Raw Materials</option>
-            <option value="upgrades" class="bg-white text-slate-900 font-semibold">Store Upgrades (1★–3★)</option>
-            <option value="slots" class="bg-white text-slate-900 font-semibold">Slot Costs (3–11)</option>
-            <option value="year-round" class="bg-white text-slate-900 font-semibold">Year-Round Stores (14)</option>
-            <option value="regional" class="bg-white text-slate-900 font-semibold">Regional Stores (5)</option>
-            <option value="seasonal" class="bg-white text-slate-900 font-semibold">Seasonal Stores (2)</option>
-            <option value="vu-generator" class="bg-white text-slate-900 font-semibold">Vu's Random Generator</option>
-          </select>
-          <svg class="w-4 h-4 text-white pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
-          </svg>
+            All
+          </button>
         </div>
 
-        <button
-          id="reset-section-btn"
-          type="button"
-          class="hidden px-2.5 py-1.5 rounded-xl text-xs font-bold bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75"
-        >
-          Show All
-        </button>
+        <!-- Global Shop Star Level Dropdown -->
+        <div class="flex items-center gap-1.5">
+          <label for="star-select" class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-slate-600 whitespace-nowrap">
+            <svg class="w-4 h-4 text-amber-400 shrink-0" viewBox="0 0 24 24" fill="currentColor" stroke="#92400e" stroke-width="1.5">
+              <path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9L12 2.5z" />
+            </svg>
+            <span>Shop Star Level:</span>
+          </label>
+          <div class="relative flex-1 sm:min-w-[138px]">
+            <select
+              id="star-select"
+              aria-label="Select global shop star level"
+              class="w-full appearance-none pl-3 pr-8 py-1.5 rounded-xl text-xs font-bold bg-emerald-50/80 text-slate-900 border border-emerald-300 hover:bg-emerald-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-600 transition duration-75"
+            >
+              <option value="0">0★ Base</option>
+              <option value="1">1★ (-10%)</option>
+              <option value="2">2★ (-15%)</option>
+              <option value="3">3★ (-20%)</option>
+            </select>
+            <svg class="w-4 h-4 text-slate-700 pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
+            </svg>
+          </div>
+        </div>
       </div>
 
-      <!-- Grouped Search + Include Ingredients + Prominent §/min Sort -->
-      <div class="flex flex-wrap items-center gap-2.5">
+      <!-- Right: Grouped Search + Sort §/min + Daily Coin Planner Button -->
+      <div class="flex flex-wrap items-center gap-2">
         <div class="flex flex-1 sm:flex-initial items-stretch bg-slate-50 border border-slate-300 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-emerald-600 focus-within:border-emerald-600 transition duration-75">
           <div class="relative flex-1 flex items-center">
             <input
               id="search-input"
               type="text"
-              placeholder="Search item, store, or zone..."
-              class="w-full sm:w-56 pl-8 pr-7 py-1.5 text-xs bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none"
+              placeholder="Search item or store..."
+              class="w-full sm:w-48 pl-8 pr-7 py-1.5 text-xs bg-transparent text-slate-900 placeholder:text-slate-400 focus:outline-none"
             />
             <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="8"></circle>
@@ -146,65 +172,24 @@
           id="sort-rate-desc-btn"
           type="button"
           aria-pressed="false"
-          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-2 ring-emerald-500/20 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
+          class="inline-flex items-center justify-center gap-1 px-3 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50 text-emerald-950 border-2 border-emerald-500 ring-2 ring-emerald-500/20 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
         >
           <span>Sort §/min</span>
           <span aria-hidden="true" class="text-sm leading-none">↓</span>
         </button>
-      </div>
-    </div>
 
-    <!-- Star Speed Tier + Unified Grouped Coin Advisor Section -->
-    <div class="pt-2 border-t border-slate-200/80 flex flex-col xl:flex-row xl:items-center justify-between gap-2.5">
-      <div class="flex flex-wrap items-center gap-1.5" id="star-bar">
-        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
-        <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">0★ Base</button>
-        <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">1★ (-10%)</button>
-        <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">2★ (-15%)</button>
-        <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">3★ (-20%)</button>
-      </div>
-
-      <!-- Unified Grouped Coin Advisor Controls (Like Search Group) -->
-      <div class="flex flex-wrap sm:flex-nowrap items-stretch bg-slate-50 border border-slate-300 rounded-xl overflow-x-auto transition duration-75">
         <button
           id="toggle-advisor-btn"
           type="button"
           aria-pressed="false"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-extrabold bg-emerald-50/70 text-slate-800 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75 focus:outline-none"
+          class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-emerald-50/80 text-slate-900 border-2 border-emerald-500 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap shadow-sm transition duration-75 focus:outline-none"
         >
-          <span>Coin Advisor</span>
+          <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="#facc15" stroke="#854d0e" stroke-width="2"/>
+            <text x="12" y="16.2" text-anchor="middle" font-size="12" font-weight="900" fill="#713f12">§</text>
+          </svg>
+          <span>Daily Coin Planner</span>
         </button>
-
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border-l border-slate-300 bg-white/70 whitespace-nowrap">
-          <label for="city-level-input" class="text-[11px] font-extrabold uppercase text-slate-600 whitespace-nowrap">City Lv.</label>
-          <input
-            id="city-level-input"
-            type="number"
-            min="1"
-            max="99"
-            value="25"
-            aria-label="Enter City Level"
-            class="num w-11 text-xs font-black text-slate-900 bg-slate-50 border border-slate-300 rounded px-1 py-0.5 text-center focus:outline-none focus:ring-2 focus:ring-emerald-600"
-          />
-        </div>
-
-        <select
-          id="playstyle-select"
-          aria-label="Select Coin Advisor playstyle"
-          class="px-2.5 py-1.5 text-xs font-bold border-l border-slate-300 bg-emerald-50/70 text-slate-900 hover:bg-emerald-100 cursor-pointer focus:outline-none focus:bg-emerald-100 whitespace-nowrap transition duration-75"
-        >
-          <option value="grind">Grind / Fast Coins</option>
-          <option value="chill" selected>Chill &amp; No-Clash</option>
-          <option value="set-forget">Set &amp; Forget</option>
-        </select>
-
-        <label
-          id="skip-late-label"
-          class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold border-l border-slate-300 bg-emerald-50/70 text-slate-800 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75"
-        >
-          <input id="toggle-skip-late" type="checkbox" checked class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
-          <span>Skip Painful Late Shops</span>
-        </label>
       </div>
     </div>
   </div>
@@ -235,39 +220,111 @@
       </h1>
 
       <div class="flex items-center gap-2 text-xs font-bold text-teal-100">
-        <span id="active-tier-badge" class="bg-teal-900/80 px-2.5 py-1 rounded-lg border border-teal-600">Active Speed: 0★ Base</span>
+        <span id="active-tier-badge" class="bg-teal-900/80 px-2.5 py-1 rounded-lg border border-teal-600">Shop Star: 0★ Base</span>
       </div>
     </header>
 
-    <!-- Collapsible City Level Coin Advisor Panel -->
-    <section id="coin-advisor-panel" class="hidden section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
-      <div class="bg-[#a7f3d0] border-b-2 border-slate-900 px-3 py-2 flex flex-wrap items-center justify-between gap-2">
-        <div class="flex flex-wrap items-center gap-2">
-          <h2 id="advisor-heading" class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">CITY LEVEL COIN ADVISOR</h2>
+    <!-- Collapsible Daily Coin Planner Panel (Self-Contained & Table-Structured) -->
+    <section id="coin-advisor-panel" class="hidden section-block bg-white border-2 border-slate-900 rounded-xl overflow-visible shadow-sm">
+      <div class="bg-[#a7f3d0] border-b-2 border-slate-900 rounded-t-[10px] px-3 py-2 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <h2 id="advisor-heading" class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">DAILY COIN PLANNER</h2>
           <span id="advisor-mode-pill" class="text-[11px] font-extrabold bg-emerald-900 text-white px-2.5 py-0.5 rounded-full whitespace-nowrap">Chill &amp; No-Clash</span>
         </div>
-        <div id="advisor-daily-summary" class="num text-xs font-black text-emerald-950 bg-white/90 border border-slate-900 px-2.5 py-1 rounded-lg whitespace-nowrap">
-          Rough Pace: ~0–0 §/day
+        <div id="advisor-daily-summary" class="num text-xs font-black text-emerald-950 bg-white/95 border border-slate-900 px-2.5 py-1 rounded-lg whitespace-nowrap">
+          ~0–0 §/day
         </div>
       </div>
 
       <div class="p-3 sm:p-4 space-y-3">
-        <!-- Playstyle Summary + Unlocked Regions Picker -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5">
-          <p id="advisor-note" class="font-semibold text-slate-700"></p>
-
-          <div id="region-selector-wrap" class="flex flex-wrap items-center gap-1.5 shrink-0">
-            <span class="text-[11px] font-extrabold uppercase text-slate-600 mr-0.5">Unlocked Regions:</span>
-            <button type="button" data-region-store="eco-shop" class="region-chip px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 transition duration-75">Green Valley</button>
-            <button type="button" data-region-store="tropical-store" class="region-chip px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 transition duration-75">Sunny Isles</button>
-            <button type="button" data-region-store="car-parts" class="region-chip px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 transition duration-75">Cactus Canyon</button>
-            <button type="button" data-region-store="silk-store" class="region-chip px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 transition duration-75">Limestone Cliffs</button>
-            <button type="button" data-region-store="fish-marketplace" class="region-chip px-2 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 transition duration-75">Frosty Fjords</button>
+        <!-- Compact Planner Controls (Stack Cleanly on Mobile) -->
+        <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 text-xs">
+          <!-- City Level -->
+          <div class="inline-flex items-center justify-between sm:justify-start gap-2 bg-slate-50 border border-slate-300 rounded-xl px-3 py-1.5">
+            <label for="city-level-input" class="text-[11px] font-extrabold uppercase text-slate-600 whitespace-nowrap">City Lv.</label>
+            <input
+              id="city-level-input"
+              type="number"
+              min="1"
+              max="99"
+              value="25"
+              aria-label="Enter City Level"
+              class="num w-12 text-xs font-black text-slate-900 bg-white border border-slate-300 rounded-lg px-1.5 py-0.5 text-center focus:outline-none focus:ring-2 focus:ring-emerald-600"
+            />
           </div>
+
+          <!-- Playstyle Dropdown -->
+          <div class="relative">
+            <select
+              id="playstyle-select"
+              aria-label="Select playstyle"
+              class="w-full appearance-none pl-3 pr-7 py-1.5 rounded-xl text-xs font-bold bg-emerald-50/80 text-slate-900 border border-emerald-300 hover:bg-emerald-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-600 transition duration-75"
+            >
+              <option value="grind">Grind / Fast Coins</option>
+              <option value="chill" selected>Chill &amp; No-Clash</option>
+              <option value="set-forget">Set &amp; Forget</option>
+            </select>
+            <svg class="w-3.5 h-3.5 text-slate-700 pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
+            </svg>
+          </div>
+
+          <!-- Unlocked Regions Dropdown Checklist -->
+          <div class="relative" id="regions-dropdown-container">
+            <button
+              id="regions-dropdown-btn"
+              type="button"
+              aria-expanded="false"
+              class="w-full inline-flex items-center justify-between gap-2 px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-50/80 text-slate-900 border border-emerald-300 hover:bg-emerald-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-600 transition duration-75"
+            >
+              <span id="regions-dropdown-label" class="truncate">Regions: None (0/5)</span>
+              <svg class="w-3.5 h-3.5 text-slate-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+
+            <div
+              id="regions-dropdown-menu"
+              class="hidden absolute left-0 mt-1.5 w-52 bg-white border-2 border-slate-900 rounded-xl shadow-lg p-1.5 z-30 space-y-1"
+            >
+              <div class="px-2 py-1 text-[10px] font-extrabold uppercase text-slate-500 border-b border-slate-200">Select Unlocked Regions</div>
+              <label class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-emerald-50 text-xs font-bold text-slate-800 cursor-pointer">
+                <input type="checkbox" data-region-store="eco-shop" class="region-checkbox w-3.5 h-3.5 rounded accent-emerald-600" />
+                <span>Green Valley</span>
+              </label>
+              <label class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-emerald-50 text-xs font-bold text-slate-800 cursor-pointer">
+                <input type="checkbox" data-region-store="tropical-store" class="region-checkbox w-3.5 h-3.5 rounded accent-emerald-600" />
+                <span>Sunny Isles</span>
+              </label>
+              <label class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-emerald-50 text-xs font-bold text-slate-800 cursor-pointer">
+                <input type="checkbox" data-region-store="car-parts" class="region-checkbox w-3.5 h-3.5 rounded accent-emerald-600" />
+                <span>Cactus Canyon</span>
+              </label>
+              <label class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-emerald-50 text-xs font-bold text-slate-800 cursor-pointer">
+                <input type="checkbox" data-region-store="silk-store" class="region-checkbox w-3.5 h-3.5 rounded accent-emerald-600" />
+                <span>Limestone Cliffs</span>
+              </label>
+              <label class="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-emerald-50 text-xs font-bold text-slate-800 cursor-pointer">
+                <input type="checkbox" data-region-store="fish-marketplace" class="region-checkbox w-3.5 h-3.5 rounded accent-emerald-600" />
+                <span>Frosty Fjords</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Skip Painful Late Shops -->
+          <label
+            id="skip-late-label"
+            class="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-600 text-white border border-emerald-700 cursor-pointer select-none whitespace-nowrap transition duration-75"
+          >
+            <input id="toggle-skip-late" type="checkbox" checked class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
+            <span>Skip Late Shops</span>
+          </label>
         </div>
 
-        <!-- Clean Scannable Row List -->
-        <div id="advisor-picks-list" class="divide-y divide-slate-200 border border-slate-300 rounded-xl overflow-hidden bg-white"></div>
+        <!-- Structured Table With Time, Rate & Amt to Make Columns -->
+        <div class="table-wrap overflow-x-auto border border-slate-300 rounded-xl bg-white">
+          <table id="advisor-picks-table" class="w-full border-collapse text-xs"></table>
+        </div>
       </div>
     </section>
 
@@ -453,130 +510,51 @@
       }
     ];
 
-    const PLAYSTYLE_META = {
-      "grind": {
-        label: "Grind / Fast Coins",
-        note: "Practical fast-turnover items for frequent check-ins, skipping fussy ingredient sinks."
-      },
-      "chill": {
-        label: "Chill & No-Clash",
-        note: "Clean, practical items per shop so upstream stores and valuable goods aren't wasted."
-      },
-      "set-forget": {
-        label: "Set & Forget",
-        note: "Longer timers & bigger payouts (like Beef over Veggies) without chasing impractical combos."
-      }
+    const PLAYSTYLE_LABELS = {
+      "grind": "Grind / Fast Coins",
+      "chill": "Chill & No-Clash",
+      "set-forget": "Set & Forget"
     };
 
-    // Omitted late-game chain shops (excluded when Skip Painful Late Shops is checked; restored when unchecked)
+    const REGION_NAMES = {
+      "eco-shop": "Green Valley",
+      "tropical-store": "Sunny Isles",
+      "car-parts": "Cactus Canyon",
+      "silk-store": "Limestone Cliffs",
+      "fish-marketplace": "Frosty Fjords"
+    };
+
     const PAIN_LATE_STORE_IDS = new Set(["restoration", "country-store", "dessert-shop"]);
 
-    // Curated practical item picks per store & playstyle (excludes impractical sinks like Kites, Green Smoothies, or Wool Shirt in default mode)
     const CURATED_STORE_PICKS = {
-      "building-supplies": {
-        "grind": "Nails",
-        "chill": "Bricks",
-        "set-forget": "Planks"
-      },
-      "hardware": {
-        "grind": "Hammer",
-        "chill": "Measuring Tape",
-        "set-forget": "Shovel"
-      },
-      "farmers-market": {
-        "grind": "Flour Bag",
-        "chill": "Vegetables",
-        "set-forget": "Beef"
-      },
-      "furniture": {
-        "grind": "Chairs",
-        "chill": "Chairs",
-        "set-forget": "Tables"
-      },
-      "gardening": {
-        "grind": "Grass",
-        "chill": "Grass",
-        "set-forget": "Tree Saplings"
-      },
-      "donut-shop": {
-        "grind": "Donuts",
-        "chill": "Donuts",
-        "set-forget": "Donuts"
-      },
-      "fashion-store": {
-        "grind": "Cap",
-        "chill": "Cap",
-        "set-forget": "Shoes"
-      },
-      "fast-food": {
-        "grind": "Cheese Fries",
-        "chill": "Cheese Fries",
-        "set-forget": "Burgers"
-      },
-      "home-appliances": {
-        "grind": "Lighting System",
-        "chill": "Lighting System",
-        "set-forget": "TV"
-      },
-      "sports-shop": {
-        "grind": "Tennis Racket",
-        "chill": "Tennis Racket",
-        "set-forget": "Tennis Racket"
-      },
-      "toy-shop": {
-        "grind": "Letter Blocks",
-        "chill": "Letter Blocks",
-        "set-forget": "Letter Blocks"
-      },
-      "restoration": {
-        "grind": "Wrought Iron",
-        "chill": "Wrought Iron",
-        "set-forget": "Carved Wood"
-      },
-      "country-store": {
-        "grind": "Picnic Basket",
-        "chill": "Apple Jam",
-        "set-forget": "Wool Shirt"
-      },
-      "dessert-shop": {
-        "grind": "Churros",
-        "chill": "Churros",
-        "set-forget": "Tiramisu"
-      },
-      "eco-shop": {
-        "grind": "Reusable Bag",
-        "chill": "Reusable Bag",
-        "set-forget": "Reusable Bag"
-      },
-      "tropical-store": {
-        "grind": "Coconut Oil",
-        "chill": "Coconut Oil",
-        "set-forget": "Coconut Oil"
-      },
-      "car-parts": {
-        "grind": "Motor Oil",
-        "chill": "Motor Oil",
-        "set-forget": "Motor Oil"
-      },
-      "silk-store": {
-        "grind": "String",
-        "chill": "String",
-        "set-forget": "String"
-      },
-      "fish-marketplace": {
-        "grind": "Canned Fish",
-        "chill": "Canned Fish",
-        "set-forget": "Canned Fish"
-      }
+      "building-supplies": { "grind": "Nails", "chill": "Bricks", "set-forget": "Planks" },
+      "hardware": { "grind": "Hammer", "chill": "Measuring Tape", "set-forget": "Shovel" },
+      "farmers-market": { "grind": "Flour Bag", "chill": "Vegetables", "set-forget": "Beef" },
+      "furniture": { "grind": "Chairs", "chill": "Chairs", "set-forget": "Tables" },
+      "gardening": { "grind": "Grass", "chill": "Grass", "set-forget": "Tree Saplings" },
+      "donut-shop": { "grind": "Donuts", "chill": "Donuts", "set-forget": "Donuts" },
+      "fashion-store": { "grind": "Cap", "chill": "Cap", "set-forget": "Shoes" },
+      "fast-food": { "grind": "Cheese Fries", "chill": "Cheese Fries", "set-forget": "Burgers" },
+      "home-appliances": { "grind": "Lighting System", "chill": "Lighting System", "set-forget": "TV" },
+      "sports-shop": { "grind": "Tennis Racket", "chill": "Tennis Racket", "set-forget": "Tennis Racket" },
+      "toy-shop": { "grind": "Letter Blocks", "chill": "Letter Blocks", "set-forget": "Letter Blocks" },
+      "restoration": { "grind": "Wrought Iron", "chill": "Wrought Iron", "set-forget": "Carved Wood" },
+      "country-store": { "grind": "Picnic Basket", "chill": "Apple Jam", "set-forget": "Wool Shirt" },
+      "dessert-shop": { "grind": "Churros", "chill": "Churros", "set-forget": "Tiramisu" },
+      "eco-shop": { "grind": "Reusable Bag", "chill": "Reusable Bag", "set-forget": "Reusable Bag" },
+      "tropical-store": { "grind": "Coconut Oil", "chill": "Coconut Oil", "set-forget": "Coconut Oil" },
+      "car-parts": { "grind": "Motor Oil", "chill": "Motor Oil", "set-forget": "Motor Oil" },
+      "silk-store": { "grind": "String", "chill": "String", "set-forget": "String" },
+      "fish-marketplace": { "grind": "Canned Fish", "chill": "Canned Fish", "set-forget": "Canned Fish" }
     };
 
     const SUPPLY_GATED_ITEMS = new Map([
-      ["Ice Cream Sandwich", { low: 4, high: 7, note: "Needs Bread Roll + Cream" }],
+      ["Ice Cream Sandwich", { low: 4, high: 7, note: "Needs Bread + Cream" }],
       ["Pizza", { low: 4, high: 7, note: "Needs Flour + Cheese + Beef" }],
-      ["Burgers", { low: 4, high: 6, note: "Needs Beef + Bread Roll + BBQ Grill" }],
-      ["Profiterole", { low: 3, high: 5, note: "Needs Donuts + Bread Roll + Cream" }],
-      ["Picnic Basket", { low: 3, high: 5, note: "Heavy fruit + textiles + glue" }],
-      ["Apple Jam", { low: 3, high: 5, note: "Needs 4 Flour Bags + Glass" }]
+      ["Burgers", { low: 4, high: 6, note: "Needs Beef + Bread + Grill" }],
+      ["Profiterole", { low: 3, high: 5, note: "Needs Donuts + Bread + Cream" }],
+      ["Picnic Basket", { low: 3, high: 5, note: "Heavy fruit + textiles" }],
+      ["Apple Jam", { low: 3, high: 5, note: "Needs 4 Flour + Glass" }]
     ]);
 
     const state = {
@@ -1047,7 +1025,7 @@
     ];
 
     // =========================================================================
-    // 3. CURATED PRACTICAL COIN ADVISOR ENGINE (ROW LIST)
+    // 3. CURATED PRACTICAL DAILY COIN PLANNER ENGINE (TABLE WITH TIME/RATE/AMT)
     // =========================================================================
     function pickCuratedItemForStore(store, lv, playstyle) {
       const unlocked = store.items.filter(it => it.lv <= lv && it.price > 0 && it.mins > 0);
@@ -1124,11 +1102,12 @@
 
       const lv = Math.min(99, Math.max(1, Number(state.cityLevel) || 1));
       const tier = STAR_TIERS[state.activeStar];
-      const meta = PLAYSTYLE_META[state.playstyle] || PLAYSTYLE_META.chill;
 
-      const regionWrap = document.getElementById("region-selector-wrap");
-      if (regionWrap) {
-        regionWrap.classList.toggle("opacity-50", lv < 25);
+      const regionsDropdownBtn = document.getElementById("regions-dropdown-btn");
+      if (regionsDropdownBtn) {
+        regionsDropdownBtn.disabled = lv < 25;
+        regionsDropdownBtn.classList.toggle("opacity-50", lv < 25);
+        regionsDropdownBtn.classList.toggle("cursor-not-allowed", lv < 25);
       }
 
       const eligibleStores = STORES.filter(s => {
@@ -1154,56 +1133,62 @@
         rows.push({ store, item: picked, m });
       });
 
-      document.getElementById("advisor-heading").textContent = `CITY LV.${lv} COIN ADVISOR (${tier.label})`;
-      document.getElementById("advisor-mode-pill").textContent = meta.label;
-      document.getElementById("advisor-note").textContent = meta.note;
+      document.getElementById("advisor-heading").textContent = `LV.${lv} DAILY COIN PLANNER (${tier.label})`;
+      document.getElementById("advisor-mode-pill").textContent = PLAYSTYLE_LABELS[state.playstyle] || PLAYSTYLE_LABELS.chill;
       document.getElementById("advisor-daily-summary").textContent =
-        `Rough Pace: ~${totalLow.toLocaleString()}–${totalHigh.toLocaleString()} §/day`;
+        `~${totalLow.toLocaleString()}–${totalHigh.toLocaleString()} §/day`;
 
-      const listEl = document.getElementById("advisor-picks-list");
+      const tableEl = document.getElementById("advisor-picks-table");
       if (rows.length === 0) {
-        listEl.innerHTML = `<div class="text-xs font-bold text-slate-600 p-4 text-center">No unlocked commercial items match your current filters.</div>`;
+        tableEl.innerHTML = `<tbody><tr><td class="text-xs font-bold text-slate-600 p-4 text-center">No unlocked items match your filter.</td></tr></tbody>`;
         return;
       }
 
-      listEl.innerHTML = rows.map(({ store, item, m }) => {
-        const noteBadge = m.gate
-          ? `<span class="text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.5 rounded">${escapeHtml(m.gate.note)}</span>`
-          : "";
+      tableEl.innerHTML = `
+        <thead>
+          <tr class="bg-slate-100 border-b-2 border-slate-900 text-[11px] font-extrabold uppercase text-slate-900">
+            <th class="py-1.5 px-2.5 text-left border-r border-slate-300 whitespace-nowrap">ITEM &amp; STORE</th>
+            <th class="py-1.5 px-2 text-left border-r border-slate-300 whitespace-nowrap">MATERIALS</th>
+            <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">1× MAX</th>
+            <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">TIME (${tier.id}★)</th>
+            <th class="py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">RATE (§/M)</th>
+            <th class="py-1.5 px-2 text-center border-r border-slate-300 whitespace-nowrap">AMT TO MAKE</th>
+            <th class="py-1.5 px-2.5 text-right whitespace-nowrap">EST. / DAY</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-300">
+          ${rows.map(({ store, item, m }) => {
+            const noteBadge = m.gate
+              ? `<span class="text-[10px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 px-1.5 py-0.5 rounded whitespace-nowrap">${escapeHtml(m.gate.note)}</span>`
+              : "";
 
-        return `
-          <div class="px-3 py-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 hover:bg-emerald-50/40 transition-colors">
-            <div class="flex items-center gap-2.5 min-w-0">
-              ${renderItemThumb(item.name)}
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-1.5">
-                  <span class="text-xs font-black text-slate-900">${escapeHtml(item.name)}</span>
-                  <span class="text-[11px] font-bold text-slate-500">• ${escapeHtml(store.name)}</span>
-                  ${noteBadge}
-                </div>
-                <div class="text-[11px] font-semibold text-slate-600 truncate">
-                  Materials: <span class="text-slate-800">${escapeHtml(item.mats)}</span> • 1× Max: <span class="num font-extrabold text-slate-900">${item.price.toLocaleString()} §</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-between md:justify-end gap-3 text-xs shrink-0 pt-1.5 md:pt-0 border-t md:border-t-0 border-slate-100">
-              <div class="num text-[11px] font-bold text-slate-700">
-                Time: <strong class="text-slate-900">${formatDuration(item.mins, tier.reduction)}</strong>
-              </div>
-              <div class="num text-[11px] font-bold text-slate-700">
-                Rate: <strong class="text-emerald-700">${m.shopRate.toFixed(2)} §/m</strong>
-              </div>
-              <div class="num text-[11px] font-bold text-slate-700">
-                Make: <strong class="text-slate-900">~${m.lowUnits}–${m.highUnits}/day</strong>
-              </div>
-              <div class="num text-xs font-black text-emerald-900 bg-emerald-100/80 border border-emerald-300 px-2.5 py-1 rounded-lg whitespace-nowrap">
-                ~${m.lowCoins.toLocaleString()}–${m.highCoins.toLocaleString()} §/day
-              </div>
-            </div>
-          </div>
-        `;
-      }).join("");
+            return `
+              <tr class="hover:bg-emerald-50/50 transition-colors">
+                <td class="py-1.5 px-2.5 border-r border-slate-300 whitespace-nowrap">
+                  <div class="flex items-center gap-2">
+                    ${renderItemThumb(item.name)}
+                    <div>
+                      <div class="flex items-center gap-1.5">
+                        <span class="font-black text-slate-900">${escapeHtml(item.name)}</span>
+                        ${noteBadge}
+                      </div>
+                      <div class="text-[11px] font-bold text-slate-500">${escapeHtml(store.name)}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="py-1.5 px-2 text-[11px] font-semibold text-slate-700 border-r border-slate-300 whitespace-nowrap">${escapeHtml(item.mats)}</td>
+                <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
+                  <div class="flex items-center justify-end gap-1"><span>${item.price.toLocaleString()}</span>${simoleonCoinSVG()}</div>
+                </td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${formatDuration(item.mins, tier.reduction)}</td>
+                <td class="num py-1.5 px-2 text-right font-black text-emerald-700 border-r border-slate-300 whitespace-nowrap">${m.shopRate.toFixed(2)}</td>
+                <td class="num py-1.5 px-2 text-center font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">~${m.lowUnits}–${m.highUnits}/d</td>
+                <td class="num py-1.5 px-2.5 text-right font-black text-emerald-950 bg-emerald-50/70 whitespace-nowrap">~${m.lowCoins.toLocaleString()}–${m.highCoins.toLocaleString()} §</td>
+              </tr>
+            `;
+          }).join("")}
+        </tbody>
+      `;
     }
 
     // =========================================================================
@@ -1581,13 +1566,13 @@
     }
 
     // =========================================================================
-    // 5. INITIALIZE & WIRE CONTROLS (DROPDOWN + ADVISOR + EMERALD STATES)
+    // 5. INITIALIZE & WIRE CONTROLS
     // =========================================================================
     renderAllTables();
 
     const sectionSelect = document.getElementById("section-select");
     const resetSectionBtn = document.getElementById("reset-section-btn");
-    const starButtons = document.querySelectorAll(".star-btn");
+    const starSelect = document.getElementById("star-select");
     const tierBadge = document.getElementById("active-tier-badge");
     const searchInput = document.getElementById("search-input");
     const clearSearchBtn = document.getElementById("clear-search-btn");
@@ -1599,22 +1584,17 @@
     const playstyleSelect = document.getElementById("playstyle-select");
     const toggleSkipLate = document.getElementById("toggle-skip-late");
     const skipLateLabel = document.getElementById("skip-late-label");
-    const regionChips = document.querySelectorAll(".region-chip");
-
-    const INACTIVE_PILL_CLASSES = ["bg-emerald-50/70", "text-slate-800", "border-emerald-200", "hover:bg-emerald-100"];
-    const ACTIVE_PILL_CLASSES = ["bg-emerald-600", "text-white", "border-emerald-700", "shadow-sm"];
+    const regionsDropdownContainer = document.getElementById("regions-dropdown-container");
+    const regionsDropdownBtn = document.getElementById("regions-dropdown-btn");
+    const regionsDropdownMenu = document.getElementById("regions-dropdown-menu");
+    const regionsDropdownLabel = document.getElementById("regions-dropdown-label");
+    const regionCheckboxes = document.querySelectorAll(".region-checkbox");
 
     const SORT_BTN_INACTIVE = ["bg-emerald-50", "text-emerald-950", "border-2", "border-emerald-500", "ring-2", "ring-emerald-500/20", "hover:bg-emerald-100"];
     const SORT_BTN_ACTIVE = ["bg-emerald-600", "text-white", "border-2", "border-emerald-800", "ring-2", "ring-emerald-600/30", "shadow-sm"];
 
-    function setPillActive(el, isActive, boldWhenActive = true) {
-      el.classList.remove(...INACTIVE_PILL_CLASSES, ...ACTIVE_PILL_CLASSES, "font-bold", "font-semibold");
-      if (isActive) {
-        el.classList.add(...ACTIVE_PILL_CLASSES, boldWhenActive ? "font-bold" : "font-semibold");
-      } else {
-        el.classList.add(...INACTIVE_PILL_CLASSES, "font-semibold");
-      }
-    }
+    const ADVISOR_BTN_INACTIVE = ["bg-emerald-50/80", "text-slate-900", "border-2", "border-emerald-500", "hover:bg-emerald-100"];
+    const ADVISOR_BTN_ACTIVE = ["bg-emerald-600", "text-white", "border-2", "border-emerald-800"];
 
     function syncSectionSelectUI() {
       const isFiltered = state.activeFilter !== "all";
@@ -1635,8 +1615,16 @@
       applyFiltersAndSearch();
     });
 
+    starSelect.addEventListener("change", () => {
+      state.activeStar = Number(starSelect.value) || 0;
+      tierBadge.textContent = `Shop Star: ${STAR_TIERS[state.activeStar].label}`;
+      renderAllStoreGrids();
+      renderCoinAdvisor();
+      applyFiltersAndSearch();
+    });
+
     function syncIngredientsLabelState() {
-      ingredientsLabel.classList.remove("bg-emerald-50/70", "bg-emerald-50", "text-slate-800", "bg-emerald-600", "text-white");
+      ingredientsLabel.classList.remove("bg-emerald-50/70", "text-slate-800", "bg-emerald-600", "text-white");
       if (toggleIngredients.checked) {
         ingredientsLabel.classList.add("bg-emerald-600", "text-white");
       } else {
@@ -1685,11 +1673,11 @@
 
     function syncAdvisorBtnState() {
       toggleAdvisorBtn.setAttribute("aria-pressed", String(state.advisorOpen));
-      toggleAdvisorBtn.classList.remove("bg-emerald-50/70", "text-slate-800", "bg-emerald-600", "text-white");
+      toggleAdvisorBtn.classList.remove(...ADVISOR_BTN_INACTIVE, ...ADVISOR_BTN_ACTIVE);
       if (state.advisorOpen) {
-        toggleAdvisorBtn.classList.add("bg-emerald-600", "text-white");
+        toggleAdvisorBtn.classList.add(...ADVISOR_BTN_ACTIVE);
       } else {
-        toggleAdvisorBtn.classList.add("bg-emerald-50/70", "text-slate-800");
+        toggleAdvisorBtn.classList.add(...ADVISOR_BTN_INACTIVE);
       }
     }
 
@@ -1724,11 +1712,11 @@
 
     function syncSkipLateState() {
       state.skipPainLate = toggleSkipLate.checked;
-      skipLateLabel.classList.remove("bg-emerald-50/70", "text-slate-800", "bg-emerald-600", "text-white");
+      skipLateLabel.classList.remove("bg-emerald-50/70", "text-slate-800", "border-emerald-300", "bg-emerald-600", "text-white", "border-emerald-700");
       if (toggleSkipLate.checked) {
-        skipLateLabel.classList.add("bg-emerald-600", "text-white");
+        skipLateLabel.classList.add("bg-emerald-600", "text-white", "border-emerald-700");
       } else {
-        skipLateLabel.classList.add("bg-emerald-50/70", "text-slate-800");
+        skipLateLabel.classList.add("bg-emerald-50/70", "text-slate-800", "border-emerald-300");
       }
     }
 
@@ -1748,55 +1736,43 @@
       renderCoinAdvisor();
     });
 
-    regionChips.forEach(chip => {
-      const storeId = chip.getAttribute("data-region-store");
-      chip.addEventListener("pointerdown", () => {
-        chip.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-      });
-      const clearChipPress = () => {
-        chip.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-        setPillActive(chip, state.unlockedRegions.has(storeId), true);
-      };
-      chip.addEventListener("pointerup", clearChipPress);
-      chip.addEventListener("pointercancel", clearChipPress);
-      chip.addEventListener("pointerleave", clearChipPress);
+    function updateRegionsDropdownLabel() {
+      const count = state.unlockedRegions.size;
+      if (count === 0) {
+        regionsDropdownLabel.textContent = "Regions: None (0/5)";
+      } else if (count === 1) {
+        const onlyId = Array.from(state.unlockedRegions)[0];
+        regionsDropdownLabel.textContent = `Region: ${REGION_NAMES[onlyId] || "1"}`;
+      } else {
+        regionsDropdownLabel.textContent = `Regions: ${count} Unlocked`;
+      }
+    }
 
-      chip.addEventListener("click", () => {
-        if (state.unlockedRegions.has(storeId)) {
-          state.unlockedRegions.delete(storeId);
-        } else {
-          state.unlockedRegions.add(storeId);
-        }
-        setPillActive(chip, state.unlockedRegions.has(storeId), true);
-        chip.blur();
-        renderCoinAdvisor();
-      });
+    regionsDropdownBtn.addEventListener("click", e => {
+      e.stopPropagation();
+      if (regionsDropdownBtn.disabled) return;
+      const isOpen = !regionsDropdownMenu.classList.contains("hidden");
+      regionsDropdownMenu.classList.toggle("hidden", isOpen);
+      regionsDropdownBtn.setAttribute("aria-expanded", String(!isOpen));
     });
 
-    starButtons.forEach(btn => {
-      btn.addEventListener("pointerdown", () => {
-        btn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-      });
-      const clearPress = () => {
-        btn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
-        setPillActive(btn, Number(btn.getAttribute("data-star")) === state.activeStar);
-      };
-      btn.addEventListener("pointerup", clearPress);
-      btn.addEventListener("pointercancel", clearPress);
-      btn.addEventListener("pointerleave", clearPress);
+    document.addEventListener("click", e => {
+      if (regionsDropdownContainer && !regionsDropdownContainer.contains(e.target)) {
+        regionsDropdownMenu.classList.add("hidden");
+        regionsDropdownBtn.setAttribute("aria-expanded", "false");
+      }
+    });
 
-      btn.addEventListener("click", () => {
-        state.activeStar = Number(btn.getAttribute("data-star"));
-        tierBadge.textContent = `Active Speed: ${STAR_TIERS[state.activeStar].label}`;
-
-        starButtons.forEach(b => {
-          setPillActive(b, Number(b.getAttribute("data-star")) === state.activeStar);
-        });
-
-        btn.blur();
-        renderAllStoreGrids();
+    regionCheckboxes.forEach(cb => {
+      cb.addEventListener("change", () => {
+        const storeId = cb.getAttribute("data-region-store");
+        if (cb.checked) {
+          state.unlockedRegions.add(storeId);
+        } else {
+          state.unlockedRegions.delete(storeId);
+        }
+        updateRegionsDropdownLabel();
         renderCoinAdvisor();
-        applyFiltersAndSearch();
       });
     });
 
@@ -1824,6 +1800,7 @@
     syncSortRateBtnState();
     syncAdvisorBtnState();
     syncSkipLateState();
+    updateRegionsDropdownLabel();
     syncSectionSelectUI();
   </script>
 </body>
