@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SIMCITY INVENTORY - Master Production &amp; Trade Chart</title>
+  <title>SIMCITY BUILDIT INVENTORY — Master Production &amp; Trade Chart</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -387,17 +387,21 @@
     ];
 
     const STORE_UPGRADES = [
-      { name: "Building Supplies Store", unlockLv: 1, build: "100", s1: "12,000", s2: "24,000", s3: "32,000", total: "68,000" },
-      { name: "Hardware Store", unlockLv: 4, build: "2,500", s1: "15,000", s2: "27,000", s3: "35,000", total: "77,000" },
-      { name: "Farmer's Market", unlockLv: 8, build: "5,000", s1: "19,000", s2: "31,000", s3: "39,000", total: "89,000" },
-      { name: "Furniture Store", unlockLv: 10, build: "8,000", s1: "21,000", s2: "33,000", s3: "41,000", total: "95,000" },
-      { name: "Gardening Supplies", unlockLv: 14, build: "13,000", s1: "25,000", s2: "37,000", s3: "45,000", total: "107,000" },
-      { name: "Donut Shop", unlockLv: 18, build: "17,000", s1: "29,000", s2: "41,000", s3: "49,000", total: "119,000" },
-      { name: "Fashion Store", unlockLv: 19, build: "22,000", s1: "30,000", s2: "42,000", s3: "50,000", total: "122,000" },
-      { name: "Fast Food Restaurant", unlockLv: 25, build: "25,000", s1: "36,000", s2: "48,000", s3: "56,000", total: "140,000" },
-      { name: "Home Appliances", unlockLv: 29, build: "30,000", s1: "40,000", s2: "52,000", s3: "60,000", total: "152,000" },
-      { name: "Sports Shop", unlockLv: 35, build: "80,000", s1: "250,000", s2: "350,000", s3: "500,000", total: "1,100,000" },
-      { name: "Regional Stores (Each)", unlockLv: 25, build: "13,000", s1: "25,000", s2: "37,000", s3: "45,000", total: "107,000" }
+      { name: "Building Supplies Store", unlockLv: 1, build: "100", s1: "12,000", s1Lv: 13, s2: "24,000", s2Lv: 25, s3: "32,000", s3Lv: 33, total: "68,000" },
+      { name: "Hardware Store", unlockLv: 4, build: "2,500", s1: "15,000", s1Lv: 16, s2: "27,000", s2Lv: 28, s3: "35,000", s3Lv: 36, total: "77,000" },
+      { name: "Farmer's Market", unlockLv: 8, build: "5,000", s1: "19,000", s1Lv: 20, s2: "31,000", s2Lv: 32, s3: "39,000", s3Lv: 40, total: "89,000" },
+      { name: "Furniture Store", unlockLv: 10, build: "8,000", s1: "21,000", s1Lv: 22, s2: "33,000", s2Lv: 34, s3: "41,000", s3Lv: 42, total: "95,000" },
+      { name: "Gardening Supplies", unlockLv: 14, build: "13,000", s1: "25,000", s1Lv: 26, s2: "37,000", s2Lv: 38, s3: "45,000", s3Lv: 46, total: "107,000" },
+      { name: "Donut Shop", unlockLv: 18, build: "17,000", s1: "29,000", s1Lv: 30, s2: "41,000", s2Lv: 42, s3: "49,000", s3Lv: 50, total: "119,000" },
+      { name: "Fashion Store", unlockLv: 19, build: "22,000", s1: "30,000", s1Lv: 31, s2: "42,000", s2Lv: 43, s3: "50,000", s3Lv: 51, total: "122,000" },
+      { name: "Fast Food Restaurant", unlockLv: 25, build: "25,000", s1: "36,000", s1Lv: 37, s2: "48,000", s2Lv: 49, s3: "56,000", s3Lv: 57, total: "140,000" },
+      { name: "Home Appliances", unlockLv: 29, build: "30,000", s1: "40,000", s1Lv: 41, s2: "52,000", s2Lv: 53, s3: "60,000", s3Lv: 61, total: "152,000" },
+      { name: "Sports Shop", unlockLv: 35, build: "80,000", s1: "250,000", s1Lv: 55, s2: "350,000", s2Lv: 60, s3: "500,000", s3Lv: 70, total: "1,100,000" },
+      { name: "Toy Shop", unlockLv: 40, build: "100,000", s1: "280,000", s1Lv: 58, s2: "420,000", s2Lv: 66, s3: "550,000", s3Lv: 75, total: "1,250,000" },
+      { name: "Bureau of Restoration", unlockLv: 45, build: "250,000", s1: "450,000", s1Lv: 76, s2: "600,000", s2Lv: 81, s3: "750,000", s3Lv: 86, total: "1,800,000" },
+      { name: "Country Store", unlockLv: 50, build: "300,000", s1: "310,000", s1Lv: 73, s2: "400,000", s2Lv: 85, s3: "450,000", s3Lv: 92, total: "1,160,000" },
+      { name: "Dessert Shop", unlockLv: 55, build: "350,000", s1: "450,000", s1Lv: 87, s2: "550,000", s2Lv: 93, s3: "870,000", s3Lv: 97, total: "1,870,000" },
+      { name: "Regional Stores (All 5)", unlockLv: 25, build: "13,000", s1: "25,000", s1Lv: 25, s2: "37,000", s2Lv: 25, s3: "45,000", s3Lv: 25, total: "107,000" }
     ];
 
     const STORES = [
@@ -816,9 +820,18 @@
               <td class="num py-1.5 px-2 text-right font-bold text-slate-800 border-r border-slate-400 whitespace-nowrap">
                 <div class="flex items-center justify-end gap-1"><span>${u.build}</span>${simoleonCoinSVG()}</div>
               </td>
-              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s1}</td>
-              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-300 whitespace-nowrap">${u.s2}</td>
-              <td class="num py-1.5 px-2 text-right font-bold text-slate-900 border-r border-slate-400 whitespace-nowrap">${u.s3}</td>
+              <td class="num py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">
+                <div class="font-bold text-slate-900 leading-tight">${u.s1}</div>
+                <div class="text-[10px] font-semibold text-slate-600 leading-tight">Lv.${u.s1Lv}</div>
+              </td>
+              <td class="num py-1.5 px-2 text-right border-r border-slate-300 whitespace-nowrap">
+                <div class="font-bold text-slate-900 leading-tight">${u.s2}</div>
+                <div class="text-[10px] font-semibold text-slate-600 leading-tight">Lv.${u.s2Lv}</div>
+              </td>
+              <td class="num py-1.5 px-2 text-right border-r border-slate-400 whitespace-nowrap">
+                <div class="font-bold text-slate-900 leading-tight">${u.s3}</div>
+                <div class="text-[10px] font-semibold text-slate-600 leading-tight">Lv.${u.s3Lv}</div>
+              </td>
               <td class="num py-1.5 px-3 text-right font-black text-teal-800 bg-slate-50 whitespace-nowrap">
                 <div class="flex items-center justify-end gap-1"><span>${u.total}</span>${simoleonCoinSVG()}</div>
               </td>
@@ -1032,7 +1045,6 @@
       setPillActive(ingredientsLabel, toggleIngredients.checked, true);
     }
 
-    // Instant emerald press feedback on pointerdown so mobile never lingers in grey
     ingredientsLabel.addEventListener("pointerdown", () => {
       ingredientsLabel.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
     });
