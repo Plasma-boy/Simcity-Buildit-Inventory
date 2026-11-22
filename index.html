@@ -154,13 +154,57 @@
       </div>
     </div>
 
-    <!-- Star Speed Tier -->
-    <div class="pt-2 border-t border-slate-200/80 flex flex-wrap items-center gap-1.5" id="star-bar">
-      <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
-      <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">0★ Base</button>
-      <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">1★ (-10%)</button>
-      <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">2★ (-15%)</button>
-      <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">3★ (-20%)</button>
+    <!-- Star Speed Tier + City Level Coin Advisor Controls -->
+    <div class="pt-2 border-t border-slate-200/80 flex flex-col xl:flex-row xl:items-center justify-between gap-2.5">
+      <div class="flex flex-wrap items-center gap-1.5" id="star-bar">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">Shop Speed Tier:</span>
+        <button data-star="0" class="star-btn px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white border border-emerald-700 shadow-sm transition duration-75 focus:outline-none">0★ Base</button>
+        <button data-star="1" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">1★ (-10%)</button>
+        <button data-star="2" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">2★ (-15%)</button>
+        <button data-star="3" class="star-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white transition duration-75 focus:outline-none">3★ (-20%)</button>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          id="toggle-advisor-btn"
+          type="button"
+          aria-pressed="false"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-extrabold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75 focus:outline-none"
+        >
+          <span>Coin Advisor</span>
+        </button>
+
+        <div class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1">
+          <label for="city-level-input" class="text-[11px] font-extrabold uppercase text-slate-600 whitespace-nowrap">City Lv.</label>
+          <input
+            id="city-level-input"
+            type="number"
+            min="1"
+            max="99"
+            value="25"
+            aria-label="Enter City Level"
+            class="num w-12 text-xs font-black text-slate-900 bg-white border border-slate-300 rounded px-1.5 py-0.5 text-center focus:outline-none focus:ring-2 focus:ring-emerald-600"
+          />
+        </div>
+
+        <select
+          id="playstyle-select"
+          aria-label="Select Coin Advisor playstyle"
+          class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50/70 text-slate-900 border border-emerald-200 hover:bg-emerald-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-600 transition duration-75"
+        >
+          <option value="grind">Grind / Fast Coins</option>
+          <option value="chill" selected>Chill &amp; No-Clash</option>
+          <option value="set-forget">Set &amp; Forget</option>
+        </select>
+
+        <label
+          id="skip-late-label"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-emerald-50/70 text-slate-800 border border-emerald-200 hover:bg-emerald-100 active:bg-emerald-600 active:text-white cursor-pointer select-none whitespace-nowrap transition duration-75"
+        >
+          <input id="toggle-skip-late" type="checkbox" checked class="w-3.5 h-3.5 rounded accent-emerald-600 cursor-pointer" />
+          <span>Skip Painful Late Shops</span>
+        </label>
+      </div>
     </div>
   </div>
 
@@ -193,6 +237,28 @@
         <span id="active-tier-badge" class="bg-teal-900/80 px-2.5 py-1 rounded-lg border border-teal-600">Active Speed: 0★ Base</span>
       </div>
     </header>
+
+    <!-- Collapsible City Level Coin Advisor Panel -->
+    <section id="coin-advisor-panel" class="hidden section-block bg-white border-2 border-slate-900 rounded-xl overflow-hidden shadow-sm">
+      <div class="bg-[#a7f3d0] border-b-2 border-slate-900 px-3 py-2 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <h2 id="advisor-heading" class="text-sm sm:text-base font-black tracking-wider uppercase text-slate-900">CITY LEVEL COIN ADVISOR</h2>
+          <span id="advisor-mode-pill" class="text-[11px] font-extrabold bg-emerald-900 text-white px-2.5 py-0.5 rounded-full whitespace-nowrap">Chill &amp; No-Clash</span>
+        </div>
+        <div id="advisor-daily-summary" class="num text-xs font-black text-emerald-950 bg-white/90 border border-slate-900 px-2.5 py-1 rounded-lg whitespace-nowrap">
+          Rough Pace: ~0–0 §/day
+        </div>
+      </div>
+
+      <div class="p-3 sm:p-4 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+          <p id="advisor-note" class="font-semibold text-slate-700"></p>
+          <span class="text-[11px] font-bold text-slate-500 whitespace-nowrap">Supply-throttled rough estimates (not 24/7 idle-free)</span>
+        </div>
+
+        <div id="advisor-picks-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2.5"></div>
+      </div>
+    </section>
 
     <!-- Empty Search State -->
     <div id="search-empty-state" class="hidden bg-white border-2 border-slate-900 rounded-xl p-6 text-center shadow-sm">
@@ -376,12 +442,57 @@
       }
     ];
 
+    const PLAYSTYLE_META = {
+      "grind": {
+        label: "Grind / Fast Coins",
+        note: "Prioritizes quick queue turnover and high §/min for frequent check-ins, with realistic supply caps on multi-shop items."
+      },
+      "chill": {
+        label: "Chill & No-Clash",
+        note: "Picks clean, self-contained items per shop so bakery, dairy, or factory materials don't get constantly starved."
+      },
+      "set-forget": {
+        label: "Set & Forget",
+        note: "Favors longer timers and bigger per-item payouts (like Beef over Veggies) when you check in less often."
+      }
+    };
+
+    const PAIN_LATE_STORE_IDS = new Set(["restoration", "dessert-shop"]);
+
+    const SUPPLY_GATED_ITEMS = new Map([
+      ["Ice Cream Sandwich", { factor: 0.35, cap: 8, note: "Needs Bread Roll + Cream" }],
+      ["Pizza", { factor: 0.45, cap: 7, note: "Needs Flour + Cheese + Beef" }],
+      ["Burgers", { factor: 0.40, cap: 6, note: "Needs Beef + Bread Roll + BBQ Grill" }],
+      ["Profiterole", { factor: 0.30, cap: 4, note: "Needs Donuts + Bread Roll + Cream" }],
+      ["Cherry Cheesecake", { factor: 0.45, cap: 6, note: "Needs Flour + Fruit + Cheese" }],
+      ["Picnic Basket", { factor: 0.45, cap: 5, note: "Heavy fruit + textiles + glue" }],
+      ["Pavlova", { factor: 0.40, cap: 4, note: "Needs Utensils + Fruit + Cream" }]
+    ]);
+
+    const LOW_CLASH_ITEMS = new Set([
+      "Nails", "Planks", "Bricks",
+      "Hammer", "Measuring Tape", "Shovel",
+      "Vegetables", "Corn", "Beef",
+      "Chairs", "Tables",
+      "Grass", "Tree Saplings", "Garden Gnomes",
+      "Green Smoothie",
+      "Cap",
+      "Cheese Fries",
+      "Tennis Racket",
+      "Letter Blocks",
+      "Wrought Iron"
+    ]);
+
     const state = {
       activeFilter: "all",
       activeStar: 0,
       searchQuery: "",
       includeIngredients: false,
-      sortRateDesc: false
+      sortRateDesc: false,
+      advisorOpen: false,
+      cityLevel: 25,
+      playstyle: "chill",
+      skipPainLate: true
     };
 
     function escapeHtml(str) {
@@ -454,16 +565,14 @@
       `;
     }
 
+    // Clean compact time format: e.g., 5m, 14m, 24m, 1h 15m, 2h 30m
     function formatDuration(baseMins, reduction) {
       if (!baseMins || baseMins <= 0) return "—";
-      const totalSeconds = Math.round(baseMins * (1 - reduction) * 60);
-      const hrs = Math.floor(totalSeconds / 3600);
-      const mins = Math.floor((totalSeconds % 3600) / 60);
-      const secs = totalSeconds % 60;
-      if (hrs > 0) {
-        return secs > 0 ? `${hrs}h ${mins}m ${secs}s` : (mins > 0 ? `${hrs}h ${mins}m` : `${hrs}h`);
-      }
-      return secs > 0 ? `${mins}m ${secs}s` : `${mins}m`;
+      const adjMins = Math.max(1, Math.round(baseMins * (1 - reduction)));
+      if (adjMins < 60) return `${adjMins}m`;
+      const hrs = Math.floor(adjMins / 60);
+      const mins = adjMins % 60;
+      return mins > 0 ? `${hrs}h ${mins}m` : `${hrs}h`;
     }
 
     function sortByRateDesc(list, getRate) {
@@ -842,7 +951,149 @@
     ];
 
     // =========================================================================
-    // 3. TABLE RENDERERS
+    // 3. COIN ADVISOR ENGINE (SUPPLY-CAPPED UNITS/DAY & ROUGH §/DAY)
+    // =========================================================================
+    function evaluateItemForAdvisor(item, reduction, playstyle) {
+      const adjMins = Math.max(1, item.mins * (1 - reduction));
+      const shopRate = item.price / adjMins;
+      const gate = SUPPLY_GATED_ITEMS.get(item.name) || null;
+      const lowClash = LOW_CLASH_ITEMS.has(item.name);
+
+      let rawUnits = 0;
+      if (playstyle === "grind") {
+        rawUnits = (240 / adjMins);
+      } else if (playstyle === "chill") {
+        rawUnits = (180 / adjMins);
+      } else {
+        // set-forget: longer cycle comfort, ~3 to 5 collections per day
+        rawUnits = adjMins >= 90 ? 3.5 : (adjMins >= 45 ? 4.5 : 5);
+      }
+
+      const supplyFactor = gate ? gate.factor : (lowClash ? 0.92 : 0.72);
+      const maxCap = gate ? gate.cap : (playstyle === "set-forget" ? 5 : (adjMins <= 15 ? 16 : (adjMins <= 35 ? 11 : 7)));
+      const realisticUnits = Math.max(1, Math.min(maxCap, Math.round(rawUnits * supplyFactor)));
+
+      const lowUnits = Math.max(1, Math.floor(realisticUnits * 0.75));
+      const highUnits = Math.max(lowUnits, Math.round(realisticUnits * 1.15));
+
+      const lowCoins = lowUnits * item.price;
+      const highCoins = highUnits * item.price;
+
+      let score = shopRate;
+      if (playstyle === "chill") {
+        score = shopRate * (lowClash ? 1.25 : 0.85) * (gate ? 0.55 : 1.0);
+      } else if (playstyle === "set-forget") {
+        const timeBonus = Math.min(2.4, adjMins / 35);
+        score = (item.price / 120) * timeBonus * (gate ? 0.7 : 1.0);
+      } else {
+        score = shopRate * (gate ? 0.75 : 1.0);
+      }
+
+      return {
+        adjMins,
+        shopRate,
+        gate,
+        lowClash,
+        lowUnits,
+        highUnits,
+        lowCoins,
+        highCoins,
+        score
+      };
+    }
+
+    function renderCoinAdvisor() {
+      const panel = document.getElementById("coin-advisor-panel");
+      if (!panel) return;
+      panel.classList.toggle("hidden", !state.advisorOpen);
+      if (!state.advisorOpen) return;
+
+      const lv = Math.min(99, Math.max(1, Number(state.cityLevel) || 1));
+      const tier = STAR_TIERS[state.activeStar];
+      const meta = PLAYSTYLE_META[state.playstyle] || PLAYSTYLE_META.chill;
+
+      const eligibleStores = STORES.filter(s => {
+        if (s.group === "regional" && lv < 25) return false;
+        if (s.group === "seasonal") return false;
+        if (state.skipPainLate && PAIN_LATE_STORE_IDS.has(s.id)) return false;
+        return s.unlockLv <= lv;
+      });
+
+      const picks = [];
+      let totalLow = 0;
+      let totalHigh = 0;
+
+      eligibleStores.forEach(store => {
+        const unlockedItems = store.items.filter(it => it.lv <= lv && it.price > 0 && it.mins > 0);
+        if (unlockedItems.length === 0) return;
+
+        let best = null;
+        unlockedItems.forEach(it => {
+          const ev = evaluateItemForAdvisor(it, tier.reduction, state.playstyle);
+          if (!best || ev.score > best.ev.score) {
+            best = { item: it, ev };
+          }
+        });
+
+        if (best) {
+          totalLow += best.ev.lowCoins;
+          totalHigh += best.ev.highCoins;
+          picks.push({ store, item: best.item, ev: best.ev });
+        }
+      });
+
+      document.getElementById("advisor-heading").textContent = `CITY LV.${lv} COIN ADVISOR (${tier.label})`;
+      document.getElementById("advisor-mode-pill").textContent = meta.label;
+      document.getElementById("advisor-note").textContent = meta.note;
+      document.getElementById("advisor-daily-summary").textContent =
+        `Rough Pace: ~${totalLow.toLocaleString()}–${totalHigh.toLocaleString()} §/day`;
+
+      const grid = document.getElementById("advisor-picks-grid");
+      if (picks.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-xs font-bold text-slate-600 p-3 text-center">No unlocked commercial items match this filter yet.</div>`;
+        return;
+      }
+
+      grid.innerHTML = picks.map(({ store, item, ev }) => {
+        const tagText = ev.gate
+          ? `Supply-gated (${ev.gate.note})`
+          : (ev.lowClash ? "Low-clash pick" : "Standard chain");
+        const tagClass = ev.gate
+          ? "bg-amber-100 text-amber-900 border-amber-300"
+          : (ev.lowClash ? "bg-emerald-100 text-emerald-900 border-emerald-300" : "bg-slate-100 text-slate-700 border-slate-300");
+
+        return `
+          <div class="border border-slate-300 rounded-xl p-2.5 bg-white flex flex-col justify-between gap-2 hover:border-emerald-500 transition-colors">
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                ${renderItemThumb(item.name)}
+                <div class="min-w-0">
+                  <div class="text-xs font-black text-slate-900 truncate">${escapeHtml(item.name)}</div>
+                  <div class="text-[11px] font-bold text-slate-600 truncate">${escapeHtml(store.name)}</div>
+                </div>
+              </div>
+              <span class="num text-xs font-black text-slate-900 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-md whitespace-nowrap">
+                ${item.price.toLocaleString()} §
+              </span>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-1.5 text-[11px] font-bold text-slate-700 pt-1 border-t border-slate-100">
+              <span class="num">Time: <strong class="text-slate-900">${formatDuration(item.mins, tier.reduction)}</strong></span>
+              <span class="num">Rate: <strong class="text-emerald-700">${ev.shopRate.toFixed(2)} §/m</strong></span>
+              <span class="num">Pace: <strong class="text-slate-900">~${ev.lowUnits}–${ev.highUnits}/day</strong></span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2 text-[11px]">
+              <span class="border px-2 py-0.5 rounded-full font-bold truncate ${tagClass}">${escapeHtml(tagText)}</span>
+              <span class="num font-black text-emerald-800 whitespace-nowrap">~${ev.lowCoins.toLocaleString()}–${ev.highCoins.toLocaleString()} §/d</span>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // =========================================================================
+    // 4. TABLE RENDERERS
     // =========================================================================
     function renderFactories() {
       const q = state.searchQuery;
@@ -908,7 +1159,7 @@
                   </div>
                 </td>
                 <td class="py-1.5 px-2 font-bold text-slate-700 border-r border-slate-300 whitespace-nowrap">${highlightMatch(m.region, q)}</td>
-                <td class="num py-1.5 px-2 text-center font-bold text-slate-800 border-r border-slate-300 whitespace-nowrap">${m.mins}m</td>
+                <td class="num py-1.5 px-2 text-center font-bold text-slate-800 border-r border-slate-300 whitespace-nowrap">${formatDuration(m.mins, 0)}</td>
                 <td class="num py-1.5 px-2 text-right font-extrabold text-slate-900 border-r border-slate-300 whitespace-nowrap">
                   <div class="flex items-center justify-end gap-1"><span>${m.price} / ${m.price * 5}</span>${simoleonCoinSVG()}</div>
                 </td>
@@ -1124,6 +1375,7 @@
       renderSlotCosts();
       renderAllStoreGrids();
       renderVuGeneratorSection();
+      renderCoinAdvisor();
       applyFiltersAndSearch();
     }
 
@@ -1215,7 +1467,7 @@
     }
 
     // =========================================================================
-    // 4. INITIALIZE & WIRE CONTROLS (DROPDOWN + EMERALD GREEN STATES)
+    // 5. INITIALIZE & WIRE CONTROLS (DROPDOWN + ADVISOR + EMERALD STATES)
     // =========================================================================
     renderAllTables();
 
@@ -1228,6 +1480,11 @@
     const toggleIngredients = document.getElementById("toggle-ingredients");
     const ingredientsLabel = document.getElementById("ingredients-label");
     const sortRateDescBtn = document.getElementById("sort-rate-desc-btn");
+    const toggleAdvisorBtn = document.getElementById("toggle-advisor-btn");
+    const cityLevelInput = document.getElementById("city-level-input");
+    const playstyleSelect = document.getElementById("playstyle-select");
+    const toggleSkipLate = document.getElementById("toggle-skip-late");
+    const skipLateLabel = document.getElementById("skip-late-label");
 
     const INACTIVE_PILL_CLASSES = ["bg-emerald-50/70", "text-slate-800", "border-emerald-200", "hover:bg-emerald-100"];
     const ACTIVE_PILL_CLASSES = ["bg-emerald-600", "text-white", "border-emerald-700", "shadow-sm"];
@@ -1311,6 +1568,61 @@
       renderAllTables();
     });
 
+    function syncAdvisorBtnState() {
+      toggleAdvisorBtn.setAttribute("aria-pressed", String(state.advisorOpen));
+      setPillActive(toggleAdvisorBtn, state.advisorOpen, true);
+    }
+
+    toggleAdvisorBtn.addEventListener("pointerdown", () => {
+      toggleAdvisorBtn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+    });
+    const clearAdvisorPress = () => {
+      toggleAdvisorBtn.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
+      syncAdvisorBtnState();
+    };
+    toggleAdvisorBtn.addEventListener("pointerup", clearAdvisorPress);
+    toggleAdvisorBtn.addEventListener("pointercancel", clearAdvisorPress);
+    toggleAdvisorBtn.addEventListener("pointerleave", clearAdvisorPress);
+
+    toggleAdvisorBtn.addEventListener("click", () => {
+      state.advisorOpen = !state.advisorOpen;
+      syncAdvisorBtnState();
+      toggleAdvisorBtn.blur();
+      renderCoinAdvisor();
+    });
+
+    cityLevelInput.addEventListener("input", () => {
+      const raw = Number(cityLevelInput.value);
+      state.cityLevel = Number.isFinite(raw) ? Math.min(99, Math.max(1, Math.round(raw))) : 25;
+      renderCoinAdvisor();
+    });
+
+    playstyleSelect.addEventListener("change", () => {
+      state.playstyle = playstyleSelect.value;
+      renderCoinAdvisor();
+    });
+
+    function syncSkipLateState() {
+      state.skipPainLate = toggleSkipLate.checked;
+      setPillActive(skipLateLabel, toggleSkipLate.checked, true);
+    }
+
+    skipLateLabel.addEventListener("pointerdown", () => {
+      skipLateLabel.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
+    });
+    const clearSkipLatePress = () => {
+      skipLateLabel.classList.remove("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.98]");
+      syncSkipLateState();
+    };
+    skipLateLabel.addEventListener("pointerup", clearSkipLatePress);
+    skipLateLabel.addEventListener("pointercancel", clearSkipLatePress);
+    skipLateLabel.addEventListener("pointerleave", clearSkipLatePress);
+
+    toggleSkipLate.addEventListener("change", () => {
+      syncSkipLateState();
+      renderCoinAdvisor();
+    });
+
     starButtons.forEach(btn => {
       btn.addEventListener("pointerdown", () => {
         btn.classList.add("bg-emerald-500", "text-white", "border-emerald-600", "scale-[0.97]");
@@ -1333,6 +1645,7 @@
 
         btn.blur();
         renderAllStoreGrids();
+        renderCoinAdvisor();
         applyFiltersAndSearch();
       });
     });
@@ -1359,6 +1672,8 @@
 
     syncIngredientsLabelState();
     syncSortRateBtnState();
+    syncAdvisorBtnState();
+    syncSkipLateState();
     syncSectionSelectUI();
   </script>
 </body>
